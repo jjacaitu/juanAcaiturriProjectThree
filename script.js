@@ -19,7 +19,7 @@ myApp.startEvent = $(".start").on("click", function () {
     console.log("yep");
     $(".introduction").fadeOut();
     $("h1").fadeIn();
-    myApp.startComputer("Beginning LOCKDOWN sequence..............<br>LOCKDOWN will take place in 20:00 minutes.....<br>Enter the correct code and press the red button in order to stop the sequence...... <br>Starting 20:00 minute sequence in....<br>");
+    myApp.startComputer("Beginning launching nuke sequence..............<br>Launching will take place in 20:00 minutes.....<br>Enter the correct code and press the red button in order to stop the launching...... <br>Starting 20:00 minute sequence in....<br>");
     myApp.randomCodeGenerator();
 });
 
@@ -43,14 +43,13 @@ myApp.inputClickEvent = $(".userInputOptions").on("click", ".input", function ()
             html += `<span class="input${input}">${input}</span>`
         })
 
-        $(`.userGuess${myApp.guessNumber}`).html(`${html}<span class="blinking">|</span>`);
+        $(`.userGuess${myApp.guessNumber}`).html(`${html}<span aria-hidden="true" class="blinking">|</span>`);
         
         if (myApp.userInput.length === 4) {
             $(".enter").removeAttr("disabled");
             $(".input").attr("disabled", "true");
         }
-    // } else {
-    //     $(".input").attr("disabled", "true");
+    
     }
     console.log(myApp.userInput);
 });
@@ -82,7 +81,7 @@ myApp.enterClickEvent = $(".enter").on("click", function () {
         myApp.guessNumber++;
         $(".guessesAndFeedback>p").text(`Attemps remaining:${11 - myApp.guessNumber}`);
         if (myApp.guessNumber > 10) {
-            alert("You lost");
+            myApp.loseAlert;
         } else {
             myApp.displayStart();
         }
@@ -98,7 +97,7 @@ myApp.deleteClickEvent = $(".delete").on("click", function () {
         html += `<span class="input${input}">${input}</span>`
     })
 
-    $(`.userGuess${myApp.guessNumber}`).html(`${html}<span class="blinking">|</span>`);
+    $(`.userGuess${myApp.guessNumber}`).html(`${html}<span aria-hidden="true" class="blinking">|</span>`);
     $(".enter").attr("disabled","true");
     console.log(myApp.userInput);
 });
@@ -130,25 +129,26 @@ myApp.getCorrectGuessesMisplaced = function () {
 
 myApp.displayStart = function () {
     $(`.guessNumber${myApp.guessNumber}`).text(myApp.guessNumber);
-    $(`.userGuess${myApp.guessNumber}`).html(`<span class="blinking">|</span>`);
+    $(`.userGuess${myApp.guessNumber}`).html(`<span aria-hidden="true" class="blinking">|</span>`);
     
 }
 
 myApp.generateFeedbackSquares = function (exact, misplaced) {
     let squareCount = 4;
+    const $feedbackDiv = $(`.feedback${myApp.guessNumber}`);
     for (let i = 0; i < exact; i++){
-        $(`.feedback${myApp.guessNumber}`).append(`<div class="feedbackSquares exact"></div>`);
+        $feedbackDiv.append(`<div class="feedbackSquares exact"></div>`);
         squareCount--;
     }
 
 
     for (let i = 0; i < misplaced; i++) {
-        $(`.feedback${myApp.guessNumber}`).append(`<div class="feedbackSquares misplaced"></div>`);
+        $feedbackDiv.append(`<div class="feedbackSquares misplaced"></div>`);
         squareCount--;
     }
 
     for (let i = 0; i < squareCount; i++) {
-        $(`.feedback${myApp.guessNumber}`).append(`<div class="feedbackSquares"></div>`);
+        $feedbackDiv.append(`<div class="feedbackSquares"></div>`);
     }
 }
 
@@ -166,14 +166,15 @@ myApp.createGuessesDiv = function () {
                         <p class="userGuess">Code:</p>
                         <p class="feedback">Result:</p>
                     </div>`;
-    $(".guessesAndFeedback").append(html);
+    const $guessesAndFeedbackDiv = $(".guessesAndFeedback");
+    $guessesAndFeedbackDiv.append(html);
     for (let i = 1; i <= 10; i++){
         const div = `<div class="guess">
                         <p class="guessNumber${i}">${i===1?1:""}</p>
                         <p class="userGuess userGuess${i}"></p>
                         <div class="feedback feedback${i}"></div>
                     </div>`
-        $(".guessesAndFeedback").append(div)
+        $guessesAndFeedbackDiv.append(div)
     }
 }
 
@@ -186,7 +187,7 @@ myApp.startTimer = function () {
         if (minutes === 0 && seconds === 0 && miliseconds === 0) {
             clearInterval(myApp.timer);
             $(".time").text(`Time: ${minutes < 10 ? "0" + minutes : minutes}:${seconds < 10 ? "0" + seconds : seconds}:${miliseconds < 10 ? "0" + miliseconds : miliseconds}`)
-            alert("You lost");
+            myApp.loseAlert;
         
         } else {
             if (miliseconds !== 0) {
@@ -212,8 +213,28 @@ myApp.startTimer = function () {
 
 myApp.stopButtonClick = $(".stopButton").on("click", function () {
     clearInterval(myApp.timer);
-    alert("YOU WIN");
+    myApp.winAlert;
 });
+
+myApp.winAlert = Swal.fire({
+    title: '<h2>CONGRATULATIONS!</h2>',
+    html: `<span>You made it! You cracked the code and stopped the lockdown!</span>`,
+    // icon: 'success',
+    confirmButtonText: '<span class="input">Play again</span>',
+    confirmButtonColor: "crimson",
+    allowOutsideClick: false,
+    background: "black"
+})
+
+myApp.loseAlert = Swal.fire({
+    title: `<h2>You didn't stopped it!</h2>`,
+    html: `<span>You didn't made it! The nuke has launched and you couldn't stop it!</span>`,
+    // icon: 'success',
+    confirmButtonText: '<span class="input">Play again</span>',
+    confirmButtonColor: "crimson",
+    allowOutsideClick: false,
+    background: "black"
+})
 
 myApp.startComputer = function (string) {
     let index = 0;
@@ -223,7 +244,7 @@ myApp.startComputer = function (string) {
     array.forEach(function (letter,index) {
         setTimeout(() => {
             text += letter;
-            $(".comp").html(text + `<span class="blinking">|</span>`);
+            $(".comp").html(text + `<span aria-hidden="true" class="blinking">|</span>`);
         }, 25 * index);
     })
 
@@ -231,7 +252,7 @@ myApp.startComputer = function (string) {
         setTimeout(() => {
             if (i !== 0) {
                 text += i + "<br>";
-                $(".comp").html(text + `<span class="blinking">|</span>`);
+                $(".comp").html(text + `<span aria-hidden="true" class="blinking">|</span>`);
             } else {
                 $(".comp").remove();
                 myApp.createGuessesDiv();
@@ -246,6 +267,6 @@ myApp.startComputer = function (string) {
 }
 
 $(document).ready(function () {
-    myApp.init();
+    myApp.init();   
     
 })

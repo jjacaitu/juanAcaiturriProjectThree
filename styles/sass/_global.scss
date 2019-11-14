@@ -37,13 +37,13 @@ span {
     margin: 0 3px;
     padding: 0 5px;
     color: white;
-    text-shadow: black 2px 2px;
+    text-shadow: $thirdColor 2px 2px;
     
 }
 
 
 header {
-    background-color: rgb(27, 26, 26);
+    background-color: $thirdColor;
     // height: 5vh;
     text-align: center;
     min-height: 5vh;
@@ -57,16 +57,19 @@ header h1 {
 
 main {
     height: 90vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     background-color: lemonchiffon;
 }
 
+.wrapper {
+    margin: 0 auto;
+    width: 90%;
+    max-width: 1400px;
+}
+
 footer {
-    background-color: rgb(27, 26, 26);
+    background-color: $thirdColor;
     height: 5vh;
-    color: chartreuse;
+    color: $mainColor;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -85,16 +88,22 @@ footer ul {
 
 
 h1 {
-    color: chartreuse;
+    color: $mainColor;
     letter-spacing: 10px;
     text-shadow: rgb(110, 12, 12) 3px 3px 0px;
     font-family: 'Aldrich', sans-serif;
 }
 
+h2 {
+    font-family: 'Aldrich', sans-serif;
+    color: $mainColor;
+    font-size: 1.3rem;
+}
+
 .introduction {
     height: 50%;
     width: 50%;
-    background-color: rgb(27, 26, 26);
+    background-color: $thirdColor;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -104,11 +113,11 @@ h1 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: rgb(255, 251, 0);  
+    color: $secondColor;  
     padding: 40px 20px;
     font-family: 'Aldrich', sans-serif;
-    // box-shadow: chartreuse 10px 10px;
-    border: chartreuse solid 5px;
+    // box-shadow: $mainColor 10px 10px;
+    border: $mainColor solid 5px;
 
     // font-family: 'VT323', monospace;
 
@@ -124,7 +133,7 @@ h1 {
     flex-grow: 1;
     flex-basis: 30%;
     margin: 5px;
-    text-shadow: black 1px 1px;
+    text-shadow: $thirdColor 1px 1px;
     color: white;
 
 }
@@ -156,7 +165,7 @@ h1 {
 }
 
 .inputBoard {
-    box-shadow: 20px 20px gold;
+    box-shadow: 20px 20px $secondColor;
 }
 
 .rightPannel button {
@@ -175,7 +184,7 @@ h1 {
 }
 
 .rightPannel button:focus {
-    outline: solid 2px black;
+    outline: solid 2px $thirdColor;
     outline-offset: -5px;
 }
 
@@ -204,7 +213,7 @@ h1 {
     width: 50%;
     padding: 30px;
     // border:solid 10px rgb(58, 57, 57);
-    border: solid 40px black;
+    border: solid 40px $thirdColor;
     border-radius: 5px;
     margin: 40px;
     font-size: 1.2rem;
@@ -218,11 +227,11 @@ h1 {
 
     font-family: 'Inconsolata', monospace;
 
-    background-color: rgb(32, 32, 32);
-    box-shadow: -20px -20px gold;
+    background-color: $thirdColor;
+    box-shadow: -20px -20px $secondColor;
     position: relative;
-    color: chartreuse;
-    outline: yellowgreen 2px solid;
+    color: $mainColor;
+    outline: $mainColor 2px solid;
     outline-offset: -10px;
     // min-width: 580px;
     min-height: 590px;
@@ -261,7 +270,7 @@ h1 {
     opacity: 0.75;
     animation: move linear infinite 15s;
     
-    // outline: yellowgreen 2px solid;
+    // outline: $mainColor 2px solid;
 }
 
 .guess {
@@ -281,7 +290,7 @@ h1 {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: chartreuse;
+    background-color: $mainColor;
     position: absolute;
     bottom: -20px;
     left: -20px;
@@ -307,7 +316,7 @@ h1 {
 }
 
 .inputBoard {
-    background-color: rgb(27, 26, 26);
+    background-color: $thirdColor;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -335,13 +344,13 @@ h1 {
 .feedbackSquares {
     width: 20px;
     height: 20px;
-    border: solid 2px black;
+    border: solid 2px $thirdColor;
     background-color: white;
     
 }
 
 .exact {
-    background-color: greenyellow;
+    background-color: $mainColor;
 }
 
 .misplaced{
@@ -373,9 +382,9 @@ h1 {
     right: 0;
     z-index: 1;
     transition: all 0.5s;
-    outline: black solid 3px;
+    outline: $thirdColor solid 3px;
     outline-offset: -10px;
-    border: black 2px solid;
+    border: $thirdColor 2px solid;
     
 }
 
@@ -384,7 +393,7 @@ h1 {
     position: absolute;
     width: 30px;
     height: 2px;
-    background-color: black;
+    background-color: $thirdColor;
     right: 50%;
     transform: translate(50%);
     bottom: 30px;
@@ -426,7 +435,7 @@ h1 {
     }
 
     100% {
-        color: black;
+        color: $thirdColor;
         // transform: scale(1);
     }
 }
