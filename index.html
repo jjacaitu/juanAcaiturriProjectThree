@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Aldrich|IBM+Plex+Mono|Press+Start+2P|Turret+Road|VT323&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://kit.fontawesome.com/d6f0115eb5.js" crossorigin="anonymous"></script>
+    <title>CrackTheCode</title>
+</head>
+<body>
+    <header>
+        <h1>CrackTheCode</h1>
+    </header>
+    <main>
+        <div class="introduction">
+            <h1>CrackTheCode</h1>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit repellat perspiciatis quos hic libero. Debitis vero assumenda est suscipit dicta sed iusto. Nisi voluptatibus cupiditate veritatis doloremque nemo sint aspernatur.</p>
+            <button class="start">Start</button>
+        </div>
+        <div class="gameBoard">
+            <div class="guessesAndFeedback">
+                <p class="comp"></p>
+            </div>
+            <div class="rightPannel">
+                <p class="time">Time: 20:00:00 </p>
+                <div class="inputBoard">
+                    <div class="userInputOptions">
+                        <button class="input input1" value="1">1</button>
+                        <button class="input input2" value="2">2</button>
+                        <button class="input input3" value="3">3</button>
+                        <button class="input input4" value="4">4</button>
+                        <button class="input input5" value="5">5</button>
+                        <button class="input input6" value="6">6</button>
+                    </div>
+                    <div class="clearAndEnter">
+                        <button class="enter" disabled>Enter</button>
+                        <button class="delete">Delete</button>
+                    </div>
+                </div>
+                <div class="stopButtonContainer">
+                    <div class="stopButtonDoor"></div>
+                    <button class="stopButton">STOP</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Made by <a href="#">Juan Acaiturri-Villa</a></p>
+        <ul>
+            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fab fa-github"></i></a></li>
+            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+        </ul>
+    </footer>
+</body>
+<script src="./script.js"></script>
+</html>
