@@ -221,7 +221,15 @@ span {
 
 header {
   background-color: #1b1a1a;
-  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   min-height: 5vh;
   padding: 5px;
 }
@@ -265,6 +273,9 @@ footer {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   font-family: 'Aldrich', sans-serif;
   padding: 5px 20px;
 }
@@ -298,11 +309,19 @@ h1 {
   letter-spacing: 10px;
   text-shadow: #6e0c0c 3px 3px 0px;
   font-family: 'Aldrich', sans-serif;
+  text-align: center;
+  padding-bottom: 10px;
 }
 
 @media (max-width: 900px) {
   h1 {
     text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.2rem;
   }
 }
 
@@ -324,12 +343,6 @@ h2 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -354,7 +367,21 @@ h2 {
 }
 
 .introduction p {
-  padding: 20px 0;
+  padding: 10px 0;
+  text-align: start;
+}
+
+@media (max-width: 600px) {
+  .introduction p {
+    font-size: 0.8rem;
+    padding: 5px 0;
+  }
+}
+
+.start {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
 }
 
 .input {
@@ -425,7 +452,7 @@ h2 {
 }
 
 .userInputOptions {
-  width: 300px;
+  min-width: 300px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -578,6 +605,15 @@ h2 {
           animation: blinking linear infinite 0.5s;
 }
 
+@media (max-width: 600px) {
+  .guess:first-of-type::after {
+    width: 5px;
+    height: 5px;
+    left: -5px;
+    bottom: -5px;
+  }
+}
+
 .guess p {
   width: calc(100%/3);
   display: -webkit-box;
@@ -605,16 +641,21 @@ h2 {
 }
 
 .time {
-  position: absolute;
-  top: -50px;
+  padding-bottom: 20px;
   font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.5rem;
 }
 
 @media (max-width: 900px) {
   .time {
-    position: initial;
     text-align: center;
     padding: 10px 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .time {
+    font-size: 1.2rem;
   }
 }
 

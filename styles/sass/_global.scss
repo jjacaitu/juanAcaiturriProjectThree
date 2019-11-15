@@ -23,12 +23,7 @@ button {
     padding: 10px;
     font-family: 'IBM Plex Mono', monospace;
     background-color: lightgrey;
-    
-    
-
 }
-
-
 
 .blinking {
     animation: blinking infinite steps(1) 1s;
@@ -46,8 +41,9 @@ span {
 
 header {
     background-color: $thirdColor;
-    // height: 5vh;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-height: 5vh;
     padding: 5px;
 }
@@ -83,6 +79,7 @@ footer {
     text-align: center;
     display: flex;
     justify-content: center;
+    align-items: center;
     font-family: 'Aldrich', sans-serif;
     padding: 5px 20px;
 
@@ -109,9 +106,13 @@ h1 {
     letter-spacing: 10px;
     text-shadow: rgb(110, 12, 12) 3px 3px 0px;
     font-family: 'Aldrich', sans-serif;
-
+    text-align: center;
+    padding-bottom: 10px;
     @include mq-tablet {
         text-align: center;
+    }
+    @include mq-phone {
+        font-size: 1.2rem;
     }
 }
 
@@ -131,8 +132,8 @@ h2 {
     transform: translate(-50%, -50%);
     z-index: 6;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    // justify-content: center;
+    // align-items: start;
     flex-direction: column;
     color: $secondColor;  
     padding: 40px 20px;
@@ -156,9 +157,18 @@ h2 {
 }
 
 .introduction p {
-    padding: 20px 0;
+    padding: 10px 0;
+    text-align: start;
 
+    @include mq-phone {
+        font-size: 0.8rem;
+        padding: 5px 0;
+    }
 
+}
+
+.start {
+    align-self: center;
 }
 
 .input {
@@ -227,7 +237,7 @@ h2 {
 
 
 .userInputOptions {
-    width: 300px;
+    min-width: 300px;
     display: flex;
     flex-wrap: wrap;
 }
@@ -355,6 +365,13 @@ h2 {
     bottom: -20px;
     left: -20px;
     animation: blinking linear infinite 0.5s;
+
+    @include mq-phone {
+        width: 5px;
+        height: 5px;
+        left: -5px;
+        bottom: -5px;
+    }
 }
 
 .guess p {
@@ -378,14 +395,18 @@ h2 {
 }
 
 .time {
-    position: absolute;
-    top: -50px;
+    padding-bottom: 20px;
     font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.5rem;
 
     @include mq-tablet {
-        position: initial;
+        
         text-align: center;
         padding: 10px 0;
+    }
+
+    @include mq-phone {
+        font-size: 1.2rem;
     }
 
 }

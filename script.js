@@ -154,9 +154,9 @@ myApp.generateFeedbackSquares = function (exact, misplaced) {
 }
 
 myApp.time = {
-    minutes: 20,
-    seconds: 0,
-    miliseconds: 0
+    // minutes: 20,
+    // seconds: 0,
+    // miliseconds: 0
 
 }
 
@@ -168,7 +168,7 @@ myApp.createGuessesDiv = function () {
                         <p class="feedback">Result:</p>
                     </div>`;
     const $guessesAndFeedbackDiv = $(".guessesAndFeedback");
-    $guessesAndFeedbackDiv.append(html);
+    $guessesAndFeedbackDiv.html(html);
     for (let i = 1; i <= 10; i++){
         const div = `<div class="guess guess${i}"></div>`
         $guessesAndFeedbackDiv.append(div)
@@ -220,7 +220,8 @@ myApp.winAlert = function () {
         confirmButtonText: '<span class="input">Play again</span>',
         confirmButtonColor: "crimson",
         allowOutsideClick: false,
-        background: "black"
+        background: "black",
+        onClose: myApp.restart
     })
 }
 
@@ -231,7 +232,8 @@ myApp.loseAlert = function () {
         confirmButtonText: '<span class="input">Play again</span>',
         confirmButtonColor: "crimson",
         allowOutsideClick: false,
-        background: "black"
+        background: "black",
+        onClose: myApp.restart
     })
 }
 
@@ -239,6 +241,11 @@ myApp.startComputer = function (string) {
     let index = 0;
     let text = "";
     const array = string.split("");
+
+    myApp.time.minutes = 20;
+    myApp.time.seconds = 0;
+    myApp.time.miliseconds = 0;
+
     console.log(array)
     array.forEach(function (letter,index) {
         setTimeout(() => {
@@ -263,6 +270,12 @@ myApp.startComputer = function (string) {
             
         }, (25 * array.length) + (150 * (50 - i * 7)));
     }
+}
+
+myApp.restart = function () {
+    $(".guessesAndFeedback").html(`<p class="comp"></p>`);
+    $(".start").trigger("click");
+    $(".stopButtonDoor").removeClass("open");
 }
 
 $(document).ready(function () {
