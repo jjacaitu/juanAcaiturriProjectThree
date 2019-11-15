@@ -1,9 +1,10 @@
 
 html {
     font-size: 125%;
+    scroll-behavior: smooth;
 }
 
-p, h1, li,ul {
+p, h1, li,ul, h2 {
     padding: 0;
     margin: 0;
 }
@@ -18,7 +19,7 @@ a {
 
 button {
     border: none;
-    font-size: 1.2rem;
+    font-size: 1rem;
     padding: 10px;
     font-family: 'IBM Plex Mono', monospace;
     
@@ -50,31 +51,40 @@ header {
     padding: 5px;
 }
 
-header h1 {
+header h2 {
     display: none;
     font-size: 1rem;
 }
 
 main {
-    height: 90vh;
+    min-height: 90vh;
     background-color: lemonchiffon;
+
+    @include mq-phone {
+        height: auto;
+    }
 }
 
 .wrapper {
     margin: 0 auto;
-    width: 90%;
+    width: 80%;
     max-width: 1400px;
+
+    @include mq-small-desktop{
+        width: 90%;
+    }
 }
 
 footer {
     background-color: $thirdColor;
-    height: 5vh;
+    min-height: 5vh;
     color: $mainColor;
     text-align: center;
     display: flex;
     justify-content: center;
     font-family: 'Aldrich', sans-serif;
     padding: 10px;
+    padding: 5px;
 
 }
 
@@ -92,6 +102,10 @@ h1 {
     letter-spacing: 10px;
     text-shadow: rgb(110, 12, 12) 3px 3px 0px;
     font-family: 'Aldrich', sans-serif;
+
+    @include mq-tablet {
+        text-align: center;
+    }
 }
 
 h2 {
@@ -101,7 +115,7 @@ h2 {
 }
 
 .introduction {
-    height: 50%;
+    // height: 50%;
     width: 50%;
     background-color: $thirdColor;
     position: absolute;
@@ -118,6 +132,16 @@ h2 {
     font-family: 'Aldrich', sans-serif;
     // box-shadow: $mainColor 10px 10px;
     border: $mainColor solid 5px;
+    max-width: 800px;
+
+    @include mq-small-desktop {
+        width: 70%;
+
+    }
+
+    @include mq-tablet {
+        width: 95%;
+    }
 
     // font-family: 'VT323', monospace;
 
@@ -125,7 +149,9 @@ h2 {
 }
 
 .introduction p {
-    padding: 20px;
+    padding: 20px 0;
+
+
 }
 
 .input {
@@ -135,6 +161,10 @@ h2 {
     margin: 5px;
     text-shadow: $thirdColor 1px 1px;
     color: white;
+
+    @include mq-phone {
+        flex-basis: initial;
+    }
 
 }
 
@@ -206,16 +236,20 @@ h2 {
 .gameBoard {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+
+    @include mq-tablet {
+        flex-direction: column;
+    }
 }
 
 .guessesAndFeedback {
-    width: 50%;
+    width: 60%;
     padding: 30px;
     // border:solid 10px rgb(58, 57, 57);
     border: solid 40px $thirdColor;
     border-radius: 5px;
-    margin: 40px;
+    margin: 40px 0;
     font-size: 1.2rem;
     font-family: 'Turret Road', cursive;
 
@@ -234,7 +268,22 @@ h2 {
     outline: $mainColor 2px solid;
     outline-offset: -10px;
     // min-width: 580px;
-    min-height: 590px;
+    min-height: 550px;
+
+    @include mq-tablet {
+        width: 100%;
+        margin: 20px 0 0;
+
+        
+    }
+
+    @include mq-phone {
+        border: solid 20px $thirdColor;
+        padding: 0;
+        box-shadow: none;
+        min-height: 375px;
+        font-size: 1rem;
+    }
     
 
 
@@ -277,6 +326,10 @@ h2 {
     display: flex;
     justify-content: space-between;
     min-height: 35px;
+    @include mq-phone {
+        justify-content: start;
+        min-height: 25px;
+    }
     
 }
 
@@ -301,17 +354,32 @@ h2 {
     width: calc(100%/3);
     display: flex;
     align-items: center;
+    @include mq-phone {
+        width: 45%;
+    }
     
+}
+
+.guess p:first-child {
+    @include mq-phone {
+        width: 10%;
+    }
 }
 
 .rightPannel {
     position: relative;
 }
 
-.rightPannel p:first-child {
+.time {
     position: absolute;
     top: -50px;
     font-family: 'IBM Plex Mono', monospace;
+
+    @include mq-tablet {
+        position: initial;
+        text-align: center;
+        padding: 10px 0;
+    }
 
 }
 
@@ -333,12 +401,20 @@ h2 {
 
 .userGuess {
     padding-left: calc(100%/3/3);
+
+    @include mq-phone {
+        padding: 0;
+    }
 }
 
 
 
 .feedback {
     justify-content: end;
+
+    @include mq-phone {
+        justify-content: start;
+    }
 }
 
 .feedbackSquares {
@@ -368,6 +444,10 @@ h2 {
     align-items: center;
     position: relative;
     overflow: hidden;
+
+    @include mq-tablet {
+        margin: 40px auto;
+    }
     
 }
 

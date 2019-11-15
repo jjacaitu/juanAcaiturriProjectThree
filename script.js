@@ -6,11 +6,7 @@ myApp.userInput = [];
 myApp.guessNumber = 1;
 
 myApp.init = function () {
-    // this.randomCodeGenerator();
-    // this.inputClickEvent;
-    // this.deleteClickEvent;
     
-    // myApp.startEvent;
     $(".rightPannel button").attr("disabled", "true");
     $(".enter").attr("disabled","true")
 }
@@ -18,7 +14,7 @@ myApp.init = function () {
 myApp.startEvent = $(".start").on("click", function () {
     console.log("yep");
     $(".introduction").fadeOut();
-    $("h1").fadeIn();
+    $("header h2").fadeIn();
     myApp.startComputer("Beginning launching nuke sequence..............<br>Launching will take place in 20:00 minutes.....<br>Enter the correct code and press the red button in order to stop the launching...... <br>Starting 20:00 minute sequence in....<br>");
     myApp.randomCodeGenerator();
 });
@@ -41,9 +37,11 @@ myApp.inputClickEvent = $(".userInputOptions").on("click", ".input", function ()
 
         myApp.userInput.forEach((input) => {
             html += `<span class="input${input}">${input}</span>`
-        })
+        });
 
-        $(`.userGuess${myApp.guessNumber}`).html(`${html}<span aria-hidden="true" class="blinking">|</span>`);
+        $(`.guess${myApp.guessNumber}`).html(
+            `<p class="guessNumber${myApp.guessNumber}">${myApp.guessNumber}</p>
+            <p class="userGuess userGuess${myApp.guessNumber}">${html}<span aria-hidden="true" class="blinking">|</span></p><div class="feedback feedback${myApp.guessNumber}"></div>`);
         
         if (myApp.userInput.length === 4) {
             $(".enter").removeAttr("disabled");
@@ -62,6 +60,9 @@ myApp.enterClickEvent = $(".enter").on("click", function () {
         myApp.generateFeedbackSquares(correctGuesses, 0);
         $(".stopButtonDoor").addClass("open");
         $(".enter").attr("disabled", "true");
+        $(".delete").attr("disabled", "true");
+        window.location = '#stopButton';
+        
     } else {
         const correctGuessesMisplaced = myApp.getCorrectGuessesMisplaced() - correctGuesses;
         myApp.time.minutes -= 2;
@@ -81,7 +82,7 @@ myApp.enterClickEvent = $(".enter").on("click", function () {
         myApp.guessNumber++;
         $(".guessesAndFeedback>p").text(`Attemps remaining:${11 - myApp.guessNumber}`);
         if (myApp.guessNumber > 10) {
-            myApp.loseAlert;
+            myApp.loseAlert();
         } else {
             myApp.displayStart();
         }
@@ -162,18 +163,14 @@ myApp.time = {
 myApp.createGuessesDiv = function () {
     const html = `<p>Attempts remaining: 10</p>
                     <div class="guess">
-                        <p>Attempt #</p>
+                        <p>#</p>
                         <p class="userGuess">Code:</p>
                         <p class="feedback">Result:</p>
                     </div>`;
     const $guessesAndFeedbackDiv = $(".guessesAndFeedback");
     $guessesAndFeedbackDiv.append(html);
     for (let i = 1; i <= 10; i++){
-        const div = `<div class="guess">
-                        <p class="guessNumber${i}">${i===1?1:""}</p>
-                        <p class="userGuess userGuess${i}"></p>
-                        <div class="feedback feedback${i}"></div>
-                    </div>`
+        const div = `<div class="guess guess${i}"></div>`
         $guessesAndFeedbackDiv.append(div)
     }
 }
@@ -187,7 +184,7 @@ myApp.startTimer = function () {
         if (minutes === 0 && seconds === 0 && miliseconds === 0) {
             clearInterval(myApp.timer);
             $(".time").text(`Time: ${minutes < 10 ? "0" + minutes : minutes}:${seconds < 10 ? "0" + seconds : seconds}:${miliseconds < 10 ? "0" + miliseconds : miliseconds}`)
-            myApp.loseAlert;
+            myApp.loseAlert();
         
         } else {
             if (miliseconds !== 0) {
@@ -213,28 +210,30 @@ myApp.startTimer = function () {
 
 myApp.stopButtonClick = $(".stopButton").on("click", function () {
     clearInterval(myApp.timer);
-    myApp.winAlert;
+    myApp.winAlert();
 });
 
-myApp.winAlert = Swal.fire({
-    title: '<h2>CONGRATULATIONS!</h2>',
-    html: `<span>You made it! You cracked the code and stopped the lockdown!</span>`,
-    // icon: 'success',
-    confirmButtonText: '<span class="input">Play again</span>',
-    confirmButtonColor: "crimson",
-    allowOutsideClick: false,
-    background: "black"
-})
+myApp.winAlert = function () {
+    Swal.fire({
+        title: '<h2>CONGRATULATIONS!</h2>',
+        html: `<span>You made it! You cracked the code and stopped the launch!</span>`,
+        confirmButtonText: '<span class="input">Play again</span>',
+        confirmButtonColor: "crimson",
+        allowOutsideClick: false,
+        background: "black"
+    })
+}
 
-myApp.loseAlert = Swal.fire({
-    title: `<h2>You didn't stopped it!</h2>`,
-    html: `<span>You didn't made it! The nuke has launched and you couldn't stop it!</span>`,
-    // icon: 'success',
-    confirmButtonText: '<span class="input">Play again</span>',
-    confirmButtonColor: "crimson",
-    allowOutsideClick: false,
-    background: "black"
-})
+myApp.loseAlert = function () {
+    Swal.fire({
+        title: `<h2>You didn't stopped it!</h2>`,
+        html: `<span>You didn't made it! The nuke has launched and you couldn't stop it!</span>`,
+        confirmButtonText: '<span class="input">Play again</span>',
+        confirmButtonColor: "crimson",
+        allowOutsideClick: false,
+        background: "black"
+    })
+}
 
 myApp.startComputer = function (string) {
     let index = 0;

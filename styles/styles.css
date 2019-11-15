@@ -181,9 +181,10 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 
 html {
   font-size: 125%;
+  scroll-behavior: smooth;
 }
 
-p, h1, li, ul {
+p, h1, li, ul, h2 {
   padding: 0;
   margin: 0;
 }
@@ -199,7 +200,7 @@ a {
 
 button {
   border: none;
-  font-size: 1.2rem;
+  font-size: 1rem;
   padding: 10px;
   font-family: 'IBM Plex Mono', monospace;
 }
@@ -224,25 +225,37 @@ header {
   padding: 5px;
 }
 
-header h1 {
+header h2 {
   display: none;
   font-size: 1rem;
 }
 
 main {
-  height: 90vh;
+  min-height: 90vh;
   background-color: lemonchiffon;
+}
+
+@media (max-width: 600px) {
+  main {
+    height: auto;
+  }
 }
 
 .wrapper {
   margin: 0 auto;
-  width: 90%;
+  width: 80%;
   max-width: 1400px;
+}
+
+@media (max-width: 1150px) {
+  .wrapper {
+    width: 90%;
+  }
 }
 
 footer {
   background-color: #1b1a1a;
-  height: 5vh;
+  min-height: 5vh;
   color: chartreuse;
   text-align: center;
   display: -webkit-box;
@@ -253,6 +266,7 @@ footer {
           justify-content: center;
   font-family: 'Aldrich', sans-serif;
   padding: 10px;
+  padding: 5px;
 }
 
 footer ul {
@@ -273,6 +287,12 @@ h1 {
   font-family: 'Aldrich', sans-serif;
 }
 
+@media (max-width: 900px) {
+  h1 {
+    text-align: center;
+  }
+}
+
 h2 {
   font-family: 'Aldrich', sans-serif;
   color: chartreuse;
@@ -280,7 +300,6 @@ h2 {
 }
 
 .introduction {
-  height: 50%;
   width: 50%;
   background-color: #1b1a1a;
   position: absolute;
@@ -306,10 +325,23 @@ h2 {
   padding: 40px 20px;
   font-family: 'Aldrich', sans-serif;
   border: chartreuse solid 5px;
+  max-width: 800px;
+}
+
+@media (max-width: 1150px) {
+  .introduction {
+    width: 70%;
+  }
+}
+
+@media (max-width: 900px) {
+  .introduction {
+    width: 95%;
+  }
 }
 
 .introduction p {
-  padding: 20px;
+  padding: 20px 0;
 }
 
 .input {
@@ -321,6 +353,13 @@ h2 {
   margin: 5px;
   text-shadow: #1b1a1a 1px 1px;
   color: white;
+}
+
+@media (max-width: 600px) {
+  .input {
+    -ms-flex-preferred-size: initial;
+        flex-basis: initial;
+  }
 }
 
 .input1 {
@@ -399,17 +438,26 @@ h2 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+@media (max-width: 900px) {
+  .gameBoard {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
 }
 
 .guessesAndFeedback {
-  width: 50%;
+  width: 60%;
   padding: 30px;
   border: solid 40px #1b1a1a;
   border-radius: 5px;
-  margin: 40px;
+  margin: 40px 0;
   font-size: 1.2rem;
   font-family: 'Turret Road', cursive;
   font-family: 'IBM Plex Mono', monospace;
@@ -423,7 +471,25 @@ h2 {
   color: chartreuse;
   outline: chartreuse 2px solid;
   outline-offset: -10px;
-  min-height: 590px;
+  min-height: 550px;
+}
+
+@media (max-width: 900px) {
+  .guessesAndFeedback {
+    width: 100%;
+    margin: 20px 0 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .guessesAndFeedback {
+    border: solid 20px #1b1a1a;
+    padding: 0;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    min-height: 375px;
+    font-size: 1rem;
+  }
 }
 
 .guessesAndFeedback::after {
@@ -472,6 +538,15 @@ h2 {
   min-height: 35px;
 }
 
+@media (max-width: 600px) {
+  .guess {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: start;
+    min-height: 25px;
+  }
+}
+
 .guess:first-of-type {
   text-decoration: underline;
   margin-bottom: 5px;
@@ -500,14 +575,34 @@ h2 {
           align-items: center;
 }
 
+@media (max-width: 600px) {
+  .guess p {
+    width: 45%;
+  }
+}
+
+@media (max-width: 600px) {
+  .guess p:first-child {
+    width: 10%;
+  }
+}
+
 .rightPannel {
   position: relative;
 }
 
-.rightPannel p:first-child {
+.time {
   position: absolute;
   top: -50px;
   font-family: 'IBM Plex Mono', monospace;
+}
+
+@media (max-width: 900px) {
+  .time {
+    position: initial;
+    text-align: center;
+    padding: 10px 0;
+  }
 }
 
 .inputBoard {
@@ -539,10 +634,24 @@ h2 {
   padding-left: calc(100%/3/3);
 }
 
+@media (max-width: 600px) {
+  .userGuess {
+    padding: 0;
+  }
+}
+
 .feedback {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: end;
+}
+
+@media (max-width: 600px) {
+  .feedback {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: start;
+  }
 }
 
 .feedbackSquares {
@@ -576,6 +685,12 @@ h2 {
           align-items: center;
   position: relative;
   overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .stopButtonContainer {
+    margin: 40px auto;
+  }
 }
 
 .stopButtonDoor {

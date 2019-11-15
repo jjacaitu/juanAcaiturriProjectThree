@@ -1,3 +1,23 @@
 $mainColor:chartreuse;
 $secondColor:gold;
 $thirdColor: rgb(27, 26, 26);
+
+// Mixins
+
+@mixin mq-small-desktop {
+    @media (max-width:1150px) {
+        @content
+    }
+}
+
+@mixin mq-tablet {
+    @media (max-width:900px) {
+        @content
+    }
+}
+
+@mixin mq-phone {
+    @media (max-width:600px) {
+        @content
+    }
+}
