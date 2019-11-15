@@ -203,6 +203,7 @@ button {
   font-size: 1rem;
   padding: 10px;
   font-family: 'IBM Plex Mono', monospace;
+  background-color: lightgrey;
 }
 
 .blinking {
