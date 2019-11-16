@@ -155,9 +155,8 @@ myApp.enterClickEvent = $(".enter").on("click", function () {
 
         $(".guessesAndFeedback>p").text(`Attempts remaining:${11 - myApp.guessNumber}`);
 
-        // Evaluate if the player has guesses left, if not end the game
+        // Evaluate if the player has guesses left, if not end the game by getting the timer to zero.
         if (myApp.guessNumber > 10) {
-            myApp.loseAlert();
             myApp.time.minutes = 0;
             myApp.time.seconds = 0;
         } else {
