@@ -17,7 +17,7 @@ myApp.startEvent = $(".start").on("click", function () {
     console.log("yep");
     $(".introduction").fadeOut();
     $("header h2").fadeIn();
-    myApp.startComputer("Beginning launching nuke sequence..............<br>Launching will take place in 20:00 minutes.....<br>Enter the correct code and press the red button in order to stop the launching...... <br>Starting 20:00 minute sequence.......................................<br>");
+    myApp.startComputer("Beginning launching nuke sequence..............<br>Launching will take place in 20:00 minutes.....<br>Enter the correct code and press the red button in order to stop the launching...... <br>Starting 20:00 minute sequence in....<br>");
     myApp.randomCodeGenerator();
 });
 
@@ -245,42 +245,31 @@ myApp.startComputer = function (string) {
     console.log(array)
     array.forEach(function (letter,index) {
         setTimeout(() => {
-            if (index === (array.length - 1)) {
-                $(".comp").remove();
+            text += letter;
+            $(".computerDisplay").html(text + `<span aria-hidden="true" class="blinking">|</span>`);
+        }, 25 * index);
+    })
+
+    for (let i = 5; i >= 0; i--){
+        setTimeout(() => {
+            if (i !== 0) {
+                text += i + "<br>";
+                $(".computerDisplay").html(text + `<span aria-hidden="true" class="blinking">|</span>`);
+            } else {
+                $(".computerDisplay").remove();
                 myApp.createGuessesDiv();
                 myApp.startTimer();
                 $(".rightPannel button").removeAttr("disabled");
                 $(".enter").attr("disabled", "true");
                 myApp.displayStart();
-            } else {
-                text += letter;
-                $(".comp").html(text + `<span aria-hidden="true" class="blinking">|</span>`); 
             }
-            // text += letter;
-            // $(".comp").html(text + `<span aria-hidden="true" class="blinking">|</span>`);
-        }, 25 * index);
-    })
-
-    // for (let i = 3; i >= 0; i--){
-    //     setTimeout(() => {
-    //         if (i !== 0) {
-    //             text += i + "<br>";
-    //             $(".comp").html(text + `<span aria-hidden="true" class="blinking">|</span>`);
-    //         } else {
-    //             $(".comp").remove();
-    //             myApp.createGuessesDiv();
-    //             myApp.startTimer();
-    //             $(".rightPannel button").removeAttr("disabled");
-    //             $(".enter").attr("disabled", "true");
-    //             myApp.displayStart();
-    //         }
             
-    //     }, (25 * array.length) + (150 * (50 - i * 25)));
-    // }
+        }, (25 * array.length - 1) + (150 * (50 - i * 7)));
+    }
 }
 
 myApp.restart = function () {
-    $(".guessesAndFeedback").html(`<p class="comp"></p>`);
+    $(".guessesAndFeedback").html(`<p class="computerDisplay"></p>`);
     myApp.masterCode = [];
     myApp.randomCodeGenerator();
     myApp.startTimer();

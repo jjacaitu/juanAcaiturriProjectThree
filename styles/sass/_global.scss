@@ -15,6 +15,32 @@ ul {
 a {
     text-decoration: none;
     color: inherit;
+
+    &:hover {
+        color: $secondColor;
+    }
+    
+}
+
+h1 {
+    color: $mainColor;
+    letter-spacing: 10px;
+    text-shadow: rgb(110, 12, 12) 3px 3px 0px;
+    font-family: $mainFont;
+    text-align: center;
+    padding-bottom: 10px;
+    @include mq-tablet {
+        text-align: center;
+    }
+    @include mq-phone {
+        font-size: 1.2rem;
+    }
+}
+
+h2 {
+    font-family: $mainFont;
+    color: $mainColor;
+    font-size: 1.3rem;
 }
 
 button {
@@ -23,6 +49,28 @@ button {
     padding: 10px;
     font-family: $thirdFont;
     background-color: lightgrey;
+    // transition: all 0.5s;
+    box-shadow: 0px 5px 0px rgb(100, 100, 100);
+    position: relative;
+    top: 0;
+    opacity: 1;
+    transition: all ease 0.3s;
+
+    &:enabled:hover,&:focus {
+    
+        outline: solid 3px $thirdColor;
+        outline-offset: -5px;
+    }
+
+    &:disabled {
+        opacity: 0.2;
+    }
+
+    &:enabled:active {
+        top: 3px;
+        box-shadow: 0px 3px 0px rgb(100, 100, 100);
+
+    }
 }
 
 .blinking {
@@ -88,43 +136,20 @@ footer {
         font-size: 0.8rem;
         flex-direction: column;
     }
-}
 
-footer ul {
-    display: flex;
-    padding-left: 20px;
-    justify-content: center;
-}
-
-footer li {
-    padding: 0 5px;
-}
-
-
-
-h1 {
-    color: $mainColor;
-    letter-spacing: 10px;
-    text-shadow: rgb(110, 12, 12) 3px 3px 0px;
-    font-family: $mainFont;
-    text-align: center;
-    padding-bottom: 10px;
-    @include mq-tablet {
-        text-align: center;
+    ul {
+        display: flex;
+        padding-left: 20px;
+        justify-content: center;
     }
-    @include mq-phone {
-        font-size: 1.2rem;
-    }
-}
 
-h2 {
-    font-family: $mainFont;
-    color: $mainColor;
-    font-size: 1.3rem;
+    li {
+        padding: 0 5px;
+    }
 }
 
 .introduction {
-    // height: 50%;
+    
     width: 75%;
     background-color: $thirdColor;
     position: absolute;
@@ -133,13 +158,10 @@ h2 {
     transform: translate(-50%, -50%);
     z-index: 6;
     display: flex;
-    // justify-content: center;
-    // align-items: start;
     flex-direction: column;
     color: $secondColor;  
     padding: 20px;
     font-family: $mainFont;
-    // box-shadow: $mainColor 10px 10px;
     border: $mainColor solid 5px;
     max-width: 1000px;
 
@@ -157,35 +179,48 @@ h2 {
     @include mq-phone {
         width: 95%;
     }
+
+    li {
+        padding: 10px 0;
+        text-align: start;
+
+        @include mq-phone {
+            font-size: 0.8rem;
+            padding: 5px 0;
+        }
+    }
     
 }
 
-.introduction p {
-    padding: 10px 0;
-    text-align: start;
-
-    @include mq-phone {
-        font-size: 0.8rem;
-        padding: 5px 0;
-    }
-}
 
 .start {
     align-self: center;
 }
 
-.input {
+.userInputOptions {
+    min-width: 300px;
+    display: flex;
+    flex-wrap: wrap;
+
+    li {
     
-    flex-grow: 1;
-    flex-basis: 30%;
-    margin: 5px;
-    text-shadow: $thirdColor 1px 1px;
-    color: white;
+        flex-grow: 1;
+        flex-basis: 30%;
+        margin: 5px;
+        text-shadow: $thirdColor 1px 1px;
+        
 
-    @include mq-phone {
-        flex-basis: initial;
+        @include mq-phone {
+            flex-basis: initial;
+        }
+
     }
+}
+ 
 
+.input {
+    width: 100%;
+    color: white;
 }
 
 .input1{
@@ -218,37 +253,6 @@ h2 {
     box-shadow: 20px 20px $secondColor;
 }
 
-.rightPannel button {
-    box-shadow: 0px 5px 0px rgb(100, 100, 100);
-    position: relative;
-    top: 0;
-    opacity: 1;
-    transition: all ease 0.3s;
-}
-
-
-.rightPannel button:disabled {
-    opacity: 0.2;
-}
-
-.rightPannel button:enabled:active {
-    top: 3px;
-    box-shadow: 0px 3px 0px rgb(100, 100, 100);
-
-}
-
-.rightPannel button:focus {
-    outline: solid 2px $thirdColor;
-    outline-offset: -5px;
-}
-
-
-.userInputOptions {
-    min-width: 300px;
-    display: flex;
-    flex-wrap: wrap;
-}
-
 .clearAndEnter {
     width: 100%;
     text-align: center;
@@ -275,16 +279,13 @@ h2 {
     border-radius: 5px;
     margin: 40px 0;
     font-size: 1.2rem;
-
     font-family: $secondaryFont;
-
     background-color: $thirdColor;
     box-shadow: -20px -20px $secondColor;
     position: relative;
     color: $mainColor;
     outline: $mainColor 2px solid;
     outline-offset: -10px;
-    // min-width: 580px;
     min-height: 550px;
 
     @include mq-tablet {
@@ -301,85 +302,83 @@ h2 {
         min-height: 375px;
         font-size: 1rem;
     }
+
+    &::after {
+        content: "";
+        width: 100%;
+        position: absolute;
+        z-index: 4;
+        background: linear-gradient(#444 50%, #000 50%);
+        background-size: 100% 4px;
+        background-repeat: repeat-y;
+        opacity: .14;
+        box-shadow : inset 0px 0px 1px 1px rgba(0, 0, 0, .8);
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        animation: pulse 5s alternate infinite;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        z-index: 5;
+        right: 0;
+        top: 0;
+        left: 0;
+        height: 1px;
+        background-image:  linear-gradient(to bottom, rgba(255,0,0,0) 0%,#444 50%,rgba(124, 119, 119, 0.98) 51%,rgba(255,0,0,0) 100%);
+        opacity: 0.75;
+        animation: move linear infinite 15s;
+
+    }
     
 
 
-}
-
-.guessesAndFeedback::after {
-    content: "";
-    width: 100%;
-    position: absolute;
-    z-index: 4;
-    background: linear-gradient(#444 50%, #000 50%);
-    background-size: 100% 4px;
-    background-repeat: repeat-y;
-    opacity: .14;
-    box-shadow : inset 0px 0px 1px 1px rgba(0, 0, 0, .8);
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    animation: pulse 5s alternate infinite;
-}
-
-.guessesAndFeedback::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    z-index: 5;
-    right: 0;
-    top: 0;
-    left: 0;
-    height: 1px;
-    background-image:  linear-gradient(to bottom, rgba(255,0,0,0) 0%,#444 50%,rgba(124, 119, 119, 0.98) 51%,rgba(255,0,0,0) 100%);
-    opacity: 0.75;
-    animation: move linear infinite 15s;
-    
-    // outline: $mainColor 2px solid;
 }
 
 .guess {
     display: flex;
-    justify-content: space-between;
     min-height: 35px;
+
     @include mq-phone {
         justify-content: start;
         min-height: 25px;
     }
-    
-}
 
-.guess:first-of-type{
-    text-decoration: underline;
-    margin-bottom: 5px;
-}
-
-.guess:first-of-type::after{
-    content: "";
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: $mainColor;
-    position: absolute;
-    bottom: -20px;
-    left: -20px;
-    animation: blinking linear infinite 0.5s;
-
-    @include mq-phone {
-        width: 5px;
-        height: 5px;
-        left: -5px;
-        bottom: -5px;
+    &:first-of-type{
+        text-decoration: underline;
+        margin-bottom: 5px;
     }
-}
 
-.guess p {
-    width: calc(100%/3);
-    display: flex;
-    align-items: center;
-    @include mq-phone {
-        width: 45%;
+    &:first-of-type::after{
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: $mainColor;
+        position: absolute;
+        bottom: -20px;
+        left: -20px;
+        animation: blinking linear infinite 0.5s;
+
+        @include mq-phone {
+            width: 5px;
+            height: 5px;
+            left: -5px;
+            bottom: -5px;
+        }
+    }
+
+    p {
+        width: calc(100%/3);
+        
+        @include mq-phone {
+            width: 45%;
+        }
+        
     }
     
 }
@@ -390,9 +389,7 @@ h2 {
     }
 }
 
-.rightPannel {
-    position: relative;
-}
+
 
 .time {
     padding-bottom: 20px;
@@ -427,24 +424,6 @@ h2 {
     
 }
 
-.userGuess {
-    padding-left: calc(100%/3/3);
-
-    @include mq-phone {
-        padding: 0;
-    }
-}
-
-
-
-.feedback {
-    justify-content: end;
-
-    @include mq-phone {
-        justify-content: start;
-    }
-}
-
 .feedbackSquares {
     width: 20px;
     height: 20px;
@@ -472,10 +451,7 @@ h2 {
     align-items: center;
     position: relative;
     overflow: hidden;
-
-    @include mq-tablet {
-        margin: 40px auto;
-    }
+    margin: 40px auto 0;
     
 }
 
@@ -485,7 +461,6 @@ h2 {
     position: absolute;
     top: 0;
     left: 0;
-    // bottom: 0;
     height: 100%;
     right: 0;
     z-index: 1;
@@ -493,22 +468,21 @@ h2 {
     outline: $thirdColor solid 3px;
     outline-offset: -10px;
     border: $thirdColor 2px solid;
+
+    &::after {
+        content: "";
+        position: absolute;
+        width: 30px;
+        height: 2px;
+        background-color: $thirdColor;
+        right: 50%;
+        transform: translate(50%);
+        bottom: 30px;
+    }
     
 }
 
-.stopButtonDoor::after {
-    content: "";
-    position: absolute;
-    width: 30px;
-    height: 2px;
-    background-color: $thirdColor;
-    right: 50%;
-    transform: translate(50%);
-    bottom: 30px;
-}
-
-
-.rightPannel .stopButton {
+.stopButton {
     width: 100px;
     height: 100px;
     background-color: rgb(182, 29, 29);
@@ -524,10 +498,10 @@ h2 {
 }
 
 
-
 .timeDown {
     animation: timeDown 1 alternate 0.5s;
 }
+
 
 @keyframes timeDown {
     0%,40%,80% {
@@ -546,7 +520,7 @@ h2 {
         color: $thirdColor;
         // transform: scale(1);
     }
-}
+};
 
 
 @keyframes blinking {
@@ -556,7 +530,7 @@ h2 {
     50% {
         opacity: 1;
     }
-}
+};
 
 @keyframes pulse {
     0% {
@@ -573,17 +547,17 @@ h2 {
     100% {
         transform: scale(1.000);  opacity: .14;
     }
-}
+};
 
 @keyframes move {
     40%,100% {
         top: 100%;
     }
-}
+};
 
 @keyframes open {
     to{
         top: -90%; 
     }
-}
+};
 

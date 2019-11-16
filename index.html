@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Aldrich|IBM+Plex+Mono|Press+Start+2P|Turret+Road|VT323&display=swap"
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Aldrich|IBM+Plex+Mono&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="./styles/styles.css">
     <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
@@ -14,40 +14,52 @@
 </head>
 <body>
     <header>
-        <h2>CrackTheCode</h2>
+        <h2>Crack The Code</h2>
     </header>
     <main>
         <div class="wrapper">
-            
-        
             <div class="introduction">
                 <h1>Crack The Code<span aria-hidden="true" class="blinking">|</span></h1>
-                <p>A game inspired by mastermind.</p>
-                <p>You will have to guess a 4 digit code in less than 10 attempts or before times runs out in order to stop the launch of a nuke. Don't forget to press the stop button when you crack the code.</p>
-                <p>Everytime you enter the wrong code the timer will go down by 3 minutes.</p>
-                <p>Each time you enter a 4 digit code, your input will be validated and the computer will give you feedback</p>
-                <p>Feedback will be given by 4 color boxes. A green box will be shown for each digit of the code that is correct on both number or color and position. A red box will be shown for each digit that exists in the code but its not in the correct position.</p>
-                <p>The colored boxes doesn't represent the digit position</p>
-                <p>Numbers can repeat on the code</p>
-                <p>Use this feedback to try to make a better guess in your next turn</p>
-                
+                <ul>
+                    <li>A game inspired by mastermind.</li>
+                    <li>You will have to guess a 4 digit code in less than 10 attempts or before times runs out in order to stop the launch of a nuke. Don't forget to press the stop button when you crack the code.</li>
+                    <li>Everytime you enter the wrong code the timer will go down by 3 minutes.</li>
+                    <li>Each time you enter a 4 digit code, your input will be validated and the computer will give you feedback</li>
+                    <li>Feedback will be given by 4 color boxes. A green box will be shown for each digit of the code that is correct on both number or color and position. A red box will be shown for each digit that exists in the code but its not in the
+                    correct position.</li>
+                    <li>The colored boxes doesn't represent the digit position</li>
+                    <li>Numbers can repeat on the code</li>
+                    <li>Use this feedback to try to make a better guess in your next turn</li>
+                </ul>
                 <button class="start">Start</button>
             </div>
             <div class="gameBoard">
                 <div class="guessesAndFeedback">
-                    <p class="comp"></p>
+                    <p class="computerDisplay"></p>
                 </div>
                 <div class="rightPannel">
                     <p class="time">Time: 20:00:00 </p>
                     <div class="inputBoard">
-                        <div class="userInputOptions">
-                            <button class="input input1" value="1">1</button>
-                            <button class="input input2" value="2">2</button>
-                            <button class="input input3" value="3">3</button>
-                            <button class="input input4" value="4">4</button>
-                            <button class="input input5" value="5">5</button>
-                            <button class="input input6" value="6">6</button>
-                        </div>
+                        <ul class="userInputOptions">
+                            <li>
+                                <button class="input input1" value="1">1</button>
+                            </li>
+                            <li>
+                                <button class="input input2" value="2">2</button>
+                            </li>
+                            <li>
+                                <button class="input input3" value="3">3</button>
+                            </li>
+                            <li>
+                                <button class="input input4" value="4">4</button>
+                            </li>
+                            <li>
+                                <button class="input input5" value="5">5</button>
+                            </li>
+                            <li>
+                                <button class="input input6" value="6">6</button>
+                            </li>
+                        </ul>
                         <div class="clearAndEnter">
                             <button class="enter" disabled>Enter</button>
                             <button class="delete">Delete</button>
@@ -62,11 +74,11 @@
         </div>
     </main>
     <footer>
-        <p>Made by <a href="#">Juan Acaiturri-Villa</a></p>
+        <p>Made by <a href="http://www.juancodes.com">Juan Acaiturri-Villa</a></p>
         <ul>
-            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="#"><i class="fab fa-github"></i></a></li>
-            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+            <li><a href="https://twitter.com/jjacaiturri" aria-label="Go to Juan Acaiturri's twitter profile"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+            <li><a href="https://github.com/jjacaitu" aria-label="Go to Juan Acaiturri's Github profile"><i class="fab fa-github" aria-hidden="true"></i></a></li>
+            <li><a href="www.linkedin.com/in/juan-acaiturri-villa" aria-label="Go to Juan Acaiturri's LinkedIn profile"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
         </ul>
     </footer>
 </body>

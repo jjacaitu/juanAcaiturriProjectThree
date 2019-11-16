@@ -204,6 +204,28 @@ button {
   padding: 10px;
   font-family: "IBM Plex Mono", monospace;
   background-color: lightgrey;
+  -webkit-box-shadow: 0px 5px 0px #646464;
+          box-shadow: 0px 5px 0px #646464;
+  position: relative;
+  top: 0;
+  opacity: 1;
+  -webkit-transition: all ease 0.3s;
+  transition: all ease 0.3s;
+}
+
+button:enabled:hover, button:focus {
+  outline: solid 3px #1b1a1a;
+  outline-offset: -5px;
+}
+
+button:disabled {
+  opacity: 0.2;
+}
+
+button:enabled:active {
+  top: 3px;
+  -webkit-box-shadow: 0px 3px 0px #646464;
+          box-shadow: 0px 3px 0px #646464;
 }
 
 .blinking {
@@ -375,13 +397,13 @@ h2 {
   }
 }
 
-.introduction p {
+.introduction li {
   padding: 10px 0;
   text-align: start;
 }
 
 @media (max-width: 600px) {
-  .introduction p {
+  .introduction li {
     font-size: 0.8rem;
     padding: 5px 0;
   }
@@ -393,7 +415,7 @@ h2 {
       align-self: center;
 }
 
-.input {
+.userInputOptions li {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
@@ -401,14 +423,18 @@ h2 {
       flex-basis: 30%;
   margin: 5px;
   text-shadow: #1b1a1a 1px 1px;
-  color: white;
 }
 
 @media (max-width: 600px) {
-  .input {
+  .userInputOptions li {
     -ms-flex-preferred-size: initial;
         flex-basis: initial;
   }
+}
+
+.input {
+  width: 100%;
+  color: white;
 }
 
 .input1 {
@@ -438,31 +464,6 @@ h2 {
 .inputBoard {
   -webkit-box-shadow: 20px 20px gold;
           box-shadow: 20px 20px gold;
-}
-
-.rightPannel button {
-  -webkit-box-shadow: 0px 5px 0px #646464;
-          box-shadow: 0px 5px 0px #646464;
-  position: relative;
-  top: 0;
-  opacity: 1;
-  -webkit-transition: all ease 0.3s;
-  transition: all ease 0.3s;
-}
-
-.rightPannel button:disabled {
-  opacity: 0.2;
-}
-
-.rightPannel button:enabled:active {
-  top: 3px;
-  -webkit-box-shadow: 0px 3px 0px #646464;
-          box-shadow: 0px 3px 0px #646464;
-}
-
-.rightPannel button:focus {
-  outline: solid 2px #1b1a1a;
-  outline-offset: -5px;
 }
 
 .userInputOptions {
@@ -582,9 +583,6 @@ h2 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   min-height: 35px;
 }
 
@@ -626,12 +624,6 @@ h2 {
 
 .guess p {
   width: calc(100%/3);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
 @media (max-width: 600px) {
@@ -644,10 +636,6 @@ h2 {
   .guess p:first-child {
     width: 10%;
   }
-}
-
-.rightPannel {
-  position: relative;
 }
 
 .time {
@@ -694,30 +682,6 @@ h2 {
           align-items: center;
 }
 
-.userGuess {
-  padding-left: calc(100%/3/3);
-}
-
-@media (max-width: 600px) {
-  .userGuess {
-    padding: 0;
-  }
-}
-
-.feedback {
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: end;
-}
-
-@media (max-width: 600px) {
-  .feedback {
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: start;
-  }
-}
-
 .feedbackSquares {
   width: 20px;
   height: 20px;
@@ -749,12 +713,7 @@ h2 {
           align-items: center;
   position: relative;
   overflow: hidden;
-}
-
-@media (max-width: 950px) {
-  .stopButtonContainer {
-    margin: 40px auto;
-  }
+  margin: 40px auto 0;
 }
 
 .stopButtonDoor {
@@ -804,6 +763,10 @@ h2 {
 .timeDown {
   -webkit-animation: timeDown 1 alternate 0.5s;
           animation: timeDown 1 alternate 0.5s;
+}
+
+a:hover {
+  color: gold;
 }
 
 @-webkit-keyframes timeDown {
