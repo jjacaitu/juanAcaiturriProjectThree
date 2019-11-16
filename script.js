@@ -244,7 +244,7 @@ myApp.winAlert = function () {
 
 myApp.loseAlert = function () {
     Swal.fire({
-        title: `<h2>You didn't stopped it!</h2>`,
+        title: `<h2>You didn't stop it!</h2>`,
         html: `<span>You didn't made it! The nuke has launched and you couldn't stop it!<br>The correct code was:<br> ${myApp.masterCode.join(" ")}</span>`,
         confirmButtonText: '<span class="input">Play again</span>',
         confirmButtonColor: "crimson",
