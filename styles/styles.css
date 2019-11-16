@@ -198,6 +198,37 @@ a {
   color: inherit;
 }
 
+a:hover {
+  color: gold;
+}
+
+h1 {
+  color: chartreuse;
+  letter-spacing: 10px;
+  text-shadow: #6e0c0c 3px 3px 0px;
+  font-family: "Aldrich", sans-serif;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+@media (max-width: 950px) {
+  h1 {
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.2rem;
+  }
+}
+
+h2 {
+  font-family: "Aldrich", sans-serif;
+  color: chartreuse;
+  font-size: 1.3rem;
+}
+
 button {
   border: none;
   font-size: 1rem;
@@ -327,33 +358,6 @@ footer li {
   padding: 0 5px;
 }
 
-h1 {
-  color: chartreuse;
-  letter-spacing: 10px;
-  text-shadow: #6e0c0c 3px 3px 0px;
-  font-family: "Aldrich", sans-serif;
-  text-align: center;
-  padding-bottom: 10px;
-}
-
-@media (max-width: 950px) {
-  h1 {
-    text-align: center;
-  }
-}
-
-@media (max-width: 600px) {
-  h1 {
-    font-size: 1.2rem;
-  }
-}
-
-h2 {
-  font-family: "Aldrich", sans-serif;
-  color: chartreuse;
-  font-size: 1.3rem;
-}
-
 .introduction {
   width: 75%;
   background-color: #1b1a1a;
@@ -415,6 +419,15 @@ h2 {
       align-self: center;
 }
 
+.userInputOptions {
+  min-width: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
 .userInputOptions li {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
@@ -464,15 +477,6 @@ h2 {
 .inputBoard {
   -webkit-box-shadow: 20px 20px gold;
           box-shadow: 20px 20px gold;
-}
-
-.userInputOptions {
-  min-width: 300px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
 }
 
 .clearAndEnter {
@@ -642,11 +646,11 @@ h2 {
   padding-bottom: 20px;
   font-family: "IBM Plex Mono", monospace;
   font-size: 1.5rem;
+  text-align: center;
 }
 
 @media (max-width: 950px) {
   .time {
-    text-align: center;
     padding: 10px 0;
   }
 }
@@ -743,7 +747,7 @@ h2 {
   bottom: 30px;
 }
 
-.rightPannel .stopButton {
+.stopButton {
   width: 100px;
   height: 100px;
   background-color: #b61d1d;
@@ -765,8 +769,87 @@ h2 {
           animation: timeDown 1 alternate 0.5s;
 }
 
-a:hover {
-  color: gold;
+.alarm {
+  color: red;
+  -webkit-animation: alert infinite linear 1s;
+          animation: alert infinite linear 1s;
+}
+
+.explode {
+  -webkit-animation: explosion linear infinite 1s;
+          animation: explosion linear infinite 1s;
+}
+
+@-webkit-keyframes explosion {
+  0% {
+    -webkit-transform: translate(2px, 1px) rotate(0deg);
+  }
+  10% {
+    -webkit-transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    -webkit-transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    -webkit-transform: translate(0px, 2px) rotate(0deg);
+  }
+  40% {
+    -webkit-transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    -webkit-transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    -webkit-transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    -webkit-transform: translate(2px, 1px) rotate(-1deg);
+  }
+  80% {
+    -webkit-transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    -webkit-transform: translate(2px, 2px) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+@keyframes explosion {
+  0% {
+    -webkit-transform: translate(2px, 1px) rotate(0deg);
+  }
+  10% {
+    -webkit-transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    -webkit-transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    -webkit-transform: translate(0px, 2px) rotate(0deg);
+  }
+  40% {
+    -webkit-transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    -webkit-transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    -webkit-transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    -webkit-transform: translate(2px, 1px) rotate(-1deg);
+  }
+  80% {
+    -webkit-transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    -webkit-transform: translate(2px, 2px) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate(1px, -2px) rotate(-1deg);
+  }
 }
 
 @-webkit-keyframes timeDown {
@@ -800,6 +883,28 @@ a:hover {
   }
   100% {
     color: #1b1a1a;
+  }
+}
+
+@-webkit-keyframes alert {
+  0%, 100% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  50% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes alert {
+  0%, 100% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  50% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
   }
 }
 

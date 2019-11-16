@@ -68,13 +68,17 @@ myApp.enterClickEvent = $(".enter").on("click", function () {
         
     } else {
         const correctGuessesMisplaced = myApp.getCorrectGuessesMisplaced() - correctGuesses;
-        myApp.time.minutes -= 2;
-        if (myApp.time.minutes < 0) {
+        
+        if (myApp.time.minutes < 2) {
             myApp.time.minutes = 0;
-            myApp.time.seconds = 0;
-            myApp.time.miliseconds = 0;
+        } else {
+            myApp.time.minutes -= 2;
         }
-        $(".time").addClass("timeDown");
+            
+           
+        $(".time").text(`Time: 00:${myApp.time.minutes < 10 ? "0" + myApp.time.minutes : myApp.time.minutes}:${myApp.time.seconds < 10 ? "0" + myApp.time.seconds : myApp.time.seconds}`)
+        
+        
         $(".time").bind("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function () {
             $(this).removeClass("timeDown");
         }).addClass("timeDown");
@@ -86,6 +90,8 @@ myApp.enterClickEvent = $(".enter").on("click", function () {
         $(".guessesAndFeedback>p").text(`Attempts remaining:${11 - myApp.guessNumber}`);
         if (myApp.guessNumber > 10) {
             myApp.loseAlert();
+            myApp.time.minutes = 0;
+            myApp.time.seconds = 0;
         } else {
             myApp.displayStart();
         }
@@ -172,45 +178,56 @@ myApp.createGuessesDiv = function () {
 }
 
 myApp.startTimer = function () {
-    myApp.time.minutes = 20;
-    myApp.time.seconds = 0;
-    myApp.time.miliseconds = 0;
+    myApp.time.minutes = 19;
+    myApp.time.seconds = 59;
+    // myApp.time.miliseconds = 0;
+
+    $(".time").bind("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function () {
+        $(this).removeClass("timeDown");
+    }).addClass("timeDown");
+
+    $(".time").text("Time: 00:20:00");
 
     myApp.timer = setInterval(() => {
+        
+        // const miliseconds = myApp.time.miliseconds;
         const minutes = myApp.time.minutes;
         const seconds = myApp.time.seconds;
-        const miliseconds = myApp.time.miliseconds;
 
-        if (minutes === 0 && seconds === 0 && miliseconds === 0) {
+        $(".time").text(`Time: 00:${minutes < 10 ? "0" + minutes : minutes}:${seconds < 10 ? "0" + seconds : seconds}`)
+
+        if (myApp.time.minutes < 1) {
+            $(".time").addClass("alarm");   
+        }
+        
+        if (myApp.time.minutes === 0 && myApp.time.seconds === 0) {
             clearInterval(myApp.timer);
-            $(".time").text(`Time: ${minutes < 10 ? "0" + minutes : minutes}:${seconds < 10 ? "0" + seconds : seconds}:${miliseconds < 10 ? "0" + miliseconds : miliseconds}`)
+            $(".time").text(`Time: 00:00:00`);
+            // $("main").addClass("explosion");
             myApp.loseAlert();
         
         } else {
-            if (miliseconds !== 0) {
-                myApp.time.miliseconds--;
+            if (myApp.time.seconds !== 0) {
+                myApp.time.seconds-- ;
 
-            }
-            if (miliseconds === 0) {
-                if (seconds === 0) {
-                    myApp.time.minutes--;
-                    myApp.time.seconds = 59;
-                    myApp.time.miliseconds = 99
-                } else {
-                    myApp.time.seconds--;
-                    myApp.time.miliseconds = 99
-                }
-            }
+            }else{
+                myApp.time.seconds = 59
+                myApp.time.minutes--;
+            } 
         }
 
-        $(".time").text(`Time: ${minutes < 10 ? "0" + minutes : minutes}:${seconds < 10 ? "0" + seconds : seconds}:${miliseconds < 10 ? "0" + miliseconds : miliseconds}`)
+        // const minutes = myApp.time.minutes;
+        // const seconds = myApp.time.seconds;
+
+        // $(".time").text(`Time: 00:${minutes < 10 ? "0" + minutes : minutes}:${seconds < 10 ? "0" + seconds : seconds}`)
     
-    }, 10)
+    }, 1000)
 }
 
 myApp.stopButtonClick = $(".stopButton").on("click", function () {
     clearInterval(myApp.timer);
     myApp.winAlert();
+    $(".input").attr("disabled", "true");
 });
 
 myApp.winAlert = function () {
@@ -233,8 +250,14 @@ myApp.loseAlert = function () {
         confirmButtonColor: "crimson",
         allowOutsideClick: false,
         background: "black",
-        onClose: myApp.restart
+        onClose: myApp.restart,
+        onOpen: myApp.explode
     })
+}
+
+myApp.explode = function () {
+    $("main").addClass("explode");
+    
 }
 
 myApp.startComputer = function (string) {
@@ -277,10 +300,15 @@ myApp.restart = function () {
     $(".stopButtonDoor").removeClass("open");
     myApp.userInput = [];
     myApp.guessNumber = 1;
+    $(".time").removeClass("alarm");
     $(".delete").removeAttr("disabled");
+    $("main").removeClass("explode");
+    $(".input").removeAttr("disabled");
 }
 
+
 $(document).ready(function () {
-    myApp.init();   
+    myApp.init();  
+    
     
 })
