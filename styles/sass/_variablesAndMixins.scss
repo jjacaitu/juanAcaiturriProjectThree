@@ -1,3 +1,5 @@
+// Variables
+
 $mainColor:chartreuse;
 $secondColor:gold;
 $thirdColor: rgb(27, 26, 26);
@@ -5,7 +7,7 @@ $mainFont: 'Aldrich', sans-serif;
 $secondaryFont: 'Inconsolata', monospace;
 $thirdFont: 'IBM Plex Mono', monospace;
 
-// Mixins
+// Mixins for media queries
 
 @mixin mq-small-desktop {
     @media (max-width:1150px) {
