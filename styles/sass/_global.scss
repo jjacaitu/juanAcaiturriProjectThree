@@ -21,7 +21,7 @@ button {
     border: none;
     font-size: 1rem;
     padding: 10px;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: $thirdFont;
     background-color: lightgrey;
 }
 
@@ -56,6 +56,7 @@ header h2 {
 main {
     min-height: 90vh;
     background-color: lemonchiffon;
+    position: relative;
 
     @include mq-phone {
         height: auto;
@@ -80,7 +81,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Aldrich', sans-serif;
+    font-family: $mainFont;
     padding: 5px 20px;
 
     @include mq-phone {
@@ -105,7 +106,7 @@ h1 {
     color: $mainColor;
     letter-spacing: 10px;
     text-shadow: rgb(110, 12, 12) 3px 3px 0px;
-    font-family: 'Aldrich', sans-serif;
+    font-family: $mainFont;
     text-align: center;
     padding-bottom: 10px;
     @include mq-tablet {
@@ -117,14 +118,14 @@ h1 {
 }
 
 h2 {
-    font-family: 'Aldrich', sans-serif;
+    font-family: $mainFont;
     color: $mainColor;
     font-size: 1.3rem;
 }
 
 .introduction {
     // height: 50%;
-    width: 50%;
+    width: 75%;
     background-color: $thirdColor;
     position: absolute;
     top: 50%;
@@ -136,23 +137,26 @@ h2 {
     // align-items: start;
     flex-direction: column;
     color: $secondColor;  
-    padding: 40px 20px;
-    font-family: 'Aldrich', sans-serif;
+    padding: 20px;
+    font-family: $mainFont;
     // box-shadow: $mainColor 10px 10px;
     border: $mainColor solid 5px;
-    max-width: 800px;
+    max-width: 1000px;
 
     @include mq-small-desktop {
-        width: 70%;
+        width: 85%;
+        max-width: initial;
 
     }
 
-    @include mq-tablet {
+    @include mq-height {
+        width: 95%;
+        max-width: initial;
+    }
+
+    @include mq-phone {
         width: 95%;
     }
-
-    // font-family: 'VT323', monospace;
-
     
 }
 
@@ -164,7 +168,6 @@ h2 {
         font-size: 0.8rem;
         padding: 5px 0;
     }
-
 }
 
 .start {
@@ -219,12 +222,16 @@ h2 {
     box-shadow: 0px 5px 0px rgb(100, 100, 100);
     position: relative;
     top: 0;
+    opacity: 1;
     transition: all ease 0.3s;
 }
 
 
+.rightPannel button:disabled {
+    opacity: 0.2;
+}
 
-.rightPannel button:active {
+.rightPannel button:enabled:active {
     top: 3px;
     box-shadow: 0px 3px 0px rgb(100, 100, 100);
 
@@ -268,15 +275,8 @@ h2 {
     border-radius: 5px;
     margin: 40px 0;
     font-size: 1.2rem;
-    font-family: 'Turret Road', cursive;
 
-    font-family: 'IBM Plex Mono', monospace;
-
-    font-family: 'Aldrich', sans-serif;
-
-    font-family: 'VT323', monospace;
-
-    font-family: 'Inconsolata', monospace;
+    font-family: $secondaryFont;
 
     background-color: $thirdColor;
     box-shadow: -20px -20px $secondColor;
@@ -396,7 +396,7 @@ h2 {
 
 .time {
     padding-bottom: 20px;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: $thirdFont;
     font-size: 1.5rem;
 
     @include mq-tablet {

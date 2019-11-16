@@ -1,6 +1,9 @@
 $mainColor:chartreuse;
 $secondColor:gold;
 $thirdColor: rgb(27, 26, 26);
+$mainFont: 'Aldrich', sans-serif;
+$secondaryFont: 'Inconsolata', monospace;
+$thirdFont: 'IBM Plex Mono', monospace;
 
 // Mixins
 
@@ -8,16 +11,22 @@ $thirdColor: rgb(27, 26, 26);
     @media (max-width:1150px) {
         @content
     }
-}
+};
 
 @mixin mq-tablet {
-    @media (max-width:900px) {
+    @media (max-width:950px) {
         @content
     }
-}
+};
 
 @mixin mq-phone {
     @media (max-width:600px) {
         @content
     }
-}
+};
+
+@mixin mq-height {
+    @media (max-height:650px){
+        @content
+    }
+};

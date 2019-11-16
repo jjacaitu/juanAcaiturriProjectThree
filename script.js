@@ -3,6 +3,8 @@ const myApp = {};
 myApp.masterCode = [];
 myApp.userInput = [];
 
+myApp.time = {};
+
 myApp.guessNumber = 1;
 
 myApp.init = function () {
@@ -15,11 +17,12 @@ myApp.startEvent = $(".start").on("click", function () {
     console.log("yep");
     $(".introduction").fadeOut();
     $("header h2").fadeIn();
-    myApp.startComputer("Beginning launching nuke sequence..............<br>Launching will take place in 20:00 minutes.....<br>Enter the correct code and press the red button in order to stop the launching...... <br>Starting 20:00 minute sequence in....<br>");
+    myApp.startComputer("Beginning launching nuke sequence..............<br>Launching will take place in 20:00 minutes.....<br>Enter the correct code and press the red button in order to stop the launching...... <br>Starting 20:00 minute sequence.......................................<br>");
     myApp.randomCodeGenerator();
 });
 
 myApp.randomCodeGenerator = function () {
+    myApp.masterCode = [];
     for (let i = 0; i < 4; i++){
         const randomNumber = Math.ceil(Math.random() * 6);
         this.masterCode.push(randomNumber);
@@ -80,7 +83,7 @@ myApp.enterClickEvent = $(".enter").on("click", function () {
         myApp.userInput = [];
         $(".enter").attr("disabled", "true");
         myApp.guessNumber++;
-        $(".guessesAndFeedback>p").text(`Attemps remaining:${11 - myApp.guessNumber}`);
+        $(".guessesAndFeedback>p").text(`Attempts remaining:${11 - myApp.guessNumber}`);
         if (myApp.guessNumber > 10) {
             myApp.loseAlert();
         } else {
@@ -153,13 +156,6 @@ myApp.generateFeedbackSquares = function (exact, misplaced) {
     }
 }
 
-myApp.time = {
-    // minutes: 20,
-    // seconds: 0,
-    // miliseconds: 0
-
-}
-
 myApp.createGuessesDiv = function () {
     const html = `<p>Attempts remaining: 10</p>
                     <div class="guess">
@@ -176,6 +172,10 @@ myApp.createGuessesDiv = function () {
 }
 
 myApp.startTimer = function () {
+    myApp.time.minutes = 20;
+    myApp.time.seconds = 0;
+    myApp.time.miliseconds = 0;
+
     myApp.timer = setInterval(() => {
         const minutes = myApp.time.minutes;
         const seconds = myApp.time.seconds;
@@ -228,7 +228,7 @@ myApp.winAlert = function () {
 myApp.loseAlert = function () {
     Swal.fire({
         title: `<h2>You didn't stopped it!</h2>`,
-        html: `<span>You didn't made it! The nuke has launched and you couldn't stop it!</span>`,
+        html: `<span>You didn't made it! The nuke has launched and you couldn't stop it!<br>The correct code was:<br> ${myApp.masterCode.join(" ")}</span>`,
         confirmButtonText: '<span class="input">Play again</span>',
         confirmButtonColor: "crimson",
         allowOutsideClick: false,
@@ -242,40 +242,53 @@ myApp.startComputer = function (string) {
     let text = "";
     const array = string.split("");
 
-    myApp.time.minutes = 20;
-    myApp.time.seconds = 0;
-    myApp.time.miliseconds = 0;
-
     console.log(array)
     array.forEach(function (letter,index) {
         setTimeout(() => {
-            text += letter;
-            $(".comp").html(text + `<span aria-hidden="true" class="blinking">|</span>`);
-        }, 25 * index);
-    })
-
-    for (let i = 5; i >= 0; i--){
-        setTimeout(() => {
-            if (i !== 0) {
-                text += i + "<br>";
-                $(".comp").html(text + `<span aria-hidden="true" class="blinking">|</span>`);
-            } else {
+            if (index === (array.length - 1)) {
                 $(".comp").remove();
                 myApp.createGuessesDiv();
                 myApp.startTimer();
                 $(".rightPannel button").removeAttr("disabled");
                 $(".enter").attr("disabled", "true");
                 myApp.displayStart();
+            } else {
+                text += letter;
+                $(".comp").html(text + `<span aria-hidden="true" class="blinking">|</span>`); 
             }
+            // text += letter;
+            // $(".comp").html(text + `<span aria-hidden="true" class="blinking">|</span>`);
+        }, 25 * index);
+    })
+
+    // for (let i = 3; i >= 0; i--){
+    //     setTimeout(() => {
+    //         if (i !== 0) {
+    //             text += i + "<br>";
+    //             $(".comp").html(text + `<span aria-hidden="true" class="blinking">|</span>`);
+    //         } else {
+    //             $(".comp").remove();
+    //             myApp.createGuessesDiv();
+    //             myApp.startTimer();
+    //             $(".rightPannel button").removeAttr("disabled");
+    //             $(".enter").attr("disabled", "true");
+    //             myApp.displayStart();
+    //         }
             
-        }, (25 * array.length) + (150 * (50 - i * 7)));
-    }
+    //     }, (25 * array.length) + (150 * (50 - i * 25)));
+    // }
 }
 
 myApp.restart = function () {
     $(".guessesAndFeedback").html(`<p class="comp"></p>`);
-    $(".start").trigger("click");
+    myApp.masterCode = [];
+    myApp.randomCodeGenerator();
+    myApp.startTimer();
+    myApp.createGuessesDiv();
     $(".stopButtonDoor").removeClass("open");
+    myApp.userInput = [];
+    myApp.guessNumber = 1;
+    $(".delete").removeAttr("disabled");
 }
 
 $(document).ready(function () {

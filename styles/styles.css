@@ -202,7 +202,7 @@ button {
   border: none;
   font-size: 1rem;
   padding: 10px;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
   background-color: lightgrey;
 }
 
@@ -242,6 +242,7 @@ header h2 {
 main {
   min-height: 90vh;
   background-color: lemonchiffon;
+  position: relative;
 }
 
 @media (max-width: 600px) {
@@ -276,7 +277,7 @@ footer {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-family: 'Aldrich', sans-serif;
+  font-family: "Aldrich", sans-serif;
   padding: 5px 20px;
 }
 
@@ -308,12 +309,12 @@ h1 {
   color: chartreuse;
   letter-spacing: 10px;
   text-shadow: #6e0c0c 3px 3px 0px;
-  font-family: 'Aldrich', sans-serif;
+  font-family: "Aldrich", sans-serif;
   text-align: center;
   padding-bottom: 10px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 950px) {
   h1 {
     text-align: center;
   }
@@ -326,13 +327,13 @@ h1 {
 }
 
 h2 {
-  font-family: 'Aldrich', sans-serif;
+  font-family: "Aldrich", sans-serif;
   color: chartreuse;
   font-size: 1.3rem;
 }
 
 .introduction {
-  width: 50%;
+  width: 75%;
   background-color: #1b1a1a;
   position: absolute;
   top: 50%;
@@ -348,19 +349,27 @@ h2 {
       -ms-flex-direction: column;
           flex-direction: column;
   color: gold;
-  padding: 40px 20px;
-  font-family: 'Aldrich', sans-serif;
+  padding: 20px;
+  font-family: "Aldrich", sans-serif;
   border: chartreuse solid 5px;
-  max-width: 800px;
+  max-width: 1000px;
 }
 
 @media (max-width: 1150px) {
   .introduction {
-    width: 70%;
+    width: 85%;
+    max-width: initial;
   }
 }
 
-@media (max-width: 900px) {
+@media (max-height: 650px) {
+  .introduction {
+    width: 95%;
+    max-width: initial;
+  }
+}
+
+@media (max-width: 600px) {
   .introduction {
     width: 95%;
   }
@@ -436,11 +445,16 @@ h2 {
           box-shadow: 0px 5px 0px #646464;
   position: relative;
   top: 0;
+  opacity: 1;
   -webkit-transition: all ease 0.3s;
   transition: all ease 0.3s;
 }
 
-.rightPannel button:active {
+.rightPannel button:disabled {
+  opacity: 0.2;
+}
+
+.rightPannel button:enabled:active {
   top: 3px;
   -webkit-box-shadow: 0px 3px 0px #646464;
           box-shadow: 0px 3px 0px #646464;
@@ -483,7 +497,7 @@ h2 {
           justify-content: space-between;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 950px) {
   .gameBoard {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -499,11 +513,7 @@ h2 {
   border-radius: 5px;
   margin: 40px 0;
   font-size: 1.2rem;
-  font-family: 'Turret Road', cursive;
-  font-family: 'IBM Plex Mono', monospace;
-  font-family: 'Aldrich', sans-serif;
-  font-family: 'VT323', monospace;
-  font-family: 'Inconsolata', monospace;
+  font-family: "Inconsolata", monospace;
   background-color: #1b1a1a;
   -webkit-box-shadow: -20px -20px gold;
           box-shadow: -20px -20px gold;
@@ -514,7 +524,7 @@ h2 {
   min-height: 550px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 950px) {
   .guessesAndFeedback {
     width: 100%;
     margin: 20px 0 0;
@@ -642,11 +652,11 @@ h2 {
 
 .time {
   padding-bottom: 20px;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-size: 1.5rem;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 950px) {
   .time {
     text-align: center;
     padding: 10px 0;
@@ -741,7 +751,7 @@ h2 {
   overflow: hidden;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 950px) {
   .stopButtonContainer {
     margin: 40px auto;
   }
