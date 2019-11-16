@@ -225,18 +225,18 @@ myApp.generateFeedbackSquares = function (exact, misplaced) {
     const $feedbackDiv = $(`.feedback${myApp.guessNumber}`);
     
     for (let i = 0; i < exact; i++){
-        $feedbackDiv.append(`<div class="feedbackSquares exact"></div>`);
+        $feedbackDiv.append(`<div class="feedbackSquares exact"><span class="sr-only">One fo the digits is correct and in the exact position</span></div>`);
         squareCount--;
     }
 
 
     for (let i = 0; i < misplaced; i++) {
-        $feedbackDiv.append(`<div class="feedbackSquares misplaced"></div>`);
+        $feedbackDiv.append(`<div class="feedbackSquares misplaced"><span class="sr-only">One fo the digits is correct but not on the correct position</span></div>`);
         squareCount--;
     }
 
     for (let i = 0; i < squareCount; i++) {
-        $feedbackDiv.append(`<div class="feedbackSquares"></div>`);
+        $feedbackDiv.append(`<div class="feedbackSquares"><span class="sr-only">One fo the digits is incorrect and doesn't exist in the code</span></div>`);
     }
 }
 
