@@ -134,7 +134,7 @@ main {
     display: flex;
     flex-direction: column;
     color: $secondColor;  
-    padding: 20px;
+    padding: 20px 50px;
     border: $mainColor solid 5px;
     max-width: 1000px;
 
@@ -281,9 +281,9 @@ main {
     
 }
 
-// Styling for each of the line containing the guesses the player makes
+// Styling for each of the rows containing the guesses the player makes
 
-.guess {
+.guessRow {
     display: flex;
     min-height: 35px;
 
@@ -327,7 +327,7 @@ main {
     
 }
 
-.guess p:first-child {
+.guessRow p:first-child {
     @include mq-phone {
         width: 10%;
     }
@@ -390,7 +390,7 @@ main {
         color: white;
     }
 
-    .clearAndEnter {
+    .deleteAndEnter {
         width: 100%;
         text-align: center;
         padding-top: 30px;

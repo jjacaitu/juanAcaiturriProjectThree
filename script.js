@@ -1,4 +1,3 @@
-
 // Creating the app object.
 
 const myApp = {};
@@ -19,15 +18,20 @@ myApp.time = {};
 
 myApp.guessNumber = 1;
 
-// Defining the init method which will make sure that the input buttons on the right panel start disabled
+// Defining the init method which will make sure that the input buttons on the right panel start disabled and will bind the click events for the different buttons of the game.
 
 myApp.init = function () {
     $(".rightPannel button").attr("disabled", "true");
-}
+    $(".userInputOptions").on("click", ".input", myApp.inputClickEventFunction);
+    $(".start").on("click", myApp.startEventFunction);
+    $(".enter").on("click", myApp.enterClickEventFunction);
+    $(".delete").on("click", myApp.deleteClickEventFunction);
+    $(".stopButton").on("click", myApp.stopButtonClickFunction);
+};
 
-// Bind the event of starting the game to the start button
+// Function for the event of starting the game that will be binded to the start button
 
-myApp.startEvent = $(".start").on("click", function () {
+myApp.startEventFunction =  function () {
     // Make introduction div desappear
     $(".introduction").fadeOut();
     // Make the h2 on the header appear
@@ -36,9 +40,9 @@ myApp.startEvent = $(".start").on("click", function () {
     myApp.startComputer("Beginning launching nuke sequence..............<br>Launching will take place in 20:00 minutes.....<br>Enter the correct code and press the red button in order to stop the launching...... <br>Starting 20:00 minute sequence in....<br>");
     // Call the method that generates the random code
     myApp.randomCodeGenerator();
-});
+};
 
-// Create the methos that generates the random code in the game.
+// Create the method that generates the random code in the game.
 
 myApp.randomCodeGenerator = function () {
 
@@ -53,11 +57,10 @@ myApp.randomCodeGenerator = function () {
     }
 }
 
-// Bind the click event on each one fo the inputs options for the player
+//Function for the click event on each one fo the inputs options for the player
 
-myApp.inputClickEvent = $(".userInputOptions").on("click", ".input", function () {
+myApp.inputClickEventFunction =  function () {
     
-
     const inputGenerated = parseInt($(this).val());
     myApp.userInput.push(inputGenerated);
     
@@ -71,7 +74,7 @@ myApp.inputClickEvent = $(".userInputOptions").on("click", ".input", function ()
     }
     
     
-});
+};
 
 //Method to update inputs in the screen by looping through each number on the players input list and using a variable outside that loop concatenate each number in order to create the html to insert on the guess each time the player makes an input.
 
@@ -89,9 +92,9 @@ myApp.updateInputsOnScreen = function () {
 
 }
 
-// Bind the click event to the enter button
+// Function for the click event that will be binded to the enter button
 
-myApp.enterClickEvent = $(".enter").on("click", function () {
+myApp.enterClickEventFunction =  function () {
 
     // Each time the player enters a guess, call the method that evaluates how many of the digits are on the correct position and number.
 
@@ -136,7 +139,7 @@ myApp.enterClickEvent = $(".enter").on("click", function () {
             $(this).removeClass("timeDown");
         }).addClass("timeDown");
 
-        // Dispplay the feedback on the screen by callig the method created to do this.
+        // Display the feedback on the screen by callig the method created to do this.
 
         myApp.generateFeedbackSquares(correctGuesses, correctGuessesMisplaced);
 
@@ -163,11 +166,11 @@ myApp.enterClickEvent = $(".enter").on("click", function () {
             myApp.displayStart();
         }
     }
-});
+};
 
-// Bind the delete event to the delete button
+// Function for the delete event that wil be binded to the delete button
 
-myApp.deleteClickEvent = $(".delete").on("click", function () {
+myApp.deleteClickEventFunction =  function () {
 
     // Remove disabled attribute to the input buttons to make sure that they are enabled in case the player decides to delete one of the digits of their code.
 
@@ -178,7 +181,7 @@ myApp.deleteClickEvent = $(".delete").on("click", function () {
 
     myApp.updateInputsOnScreen();
     
-});
+};
 
 // Method that returns the amount of digits on the user guess that are on both the correct position and the correct number
 
@@ -243,7 +246,7 @@ myApp.generateFeedbackSquares = function (exact, misplaced) {
 
 myApp.createGuessesDiv = function () {
     const html = `<p>Attempts remaining: 10</p>
-                    <div class="guess">
+                    <div class="guessRow">
                         <p>#</p>
                         <p class="userGuess">Code:</p>
                         <p class="feedback">Result:</p>
@@ -251,7 +254,7 @@ myApp.createGuessesDiv = function () {
     const $guessesAndFeedbackDiv = $(".guessesAndFeedback");
     $guessesAndFeedbackDiv.html(html);
     for (let i = 1; i <= 10; i++){
-        const div = `<div class="guess guess${i}"></div>`
+        const div = `<div class="guessRow guess${i}"></div>`
         $guessesAndFeedbackDiv.append(div)
     }
 }
@@ -307,15 +310,15 @@ myApp.startTimer = function () {
     }, 1000)
 }
 
-// Bind the stop event to the stop button.
-myApp.stopButtonClick = $(".stopButton").on("click", function () {
+// Function for the stop event that will be binded to the stop button.
+myApp.stopButtonClickFunction =  function () {
 
     // When the stop button is pressed clear the interval to stop the timer and show the "Congratulations" message by calling the win alert. Also disable the input buttons.
 
     clearInterval(myApp.timer);
     myApp.winAlert();
     $(".input").attr("disabled", "true");
-});
+};
 
 // Method that calls the message in the case the player wins and lets the player play again.
 myApp.winAlert = function () {
@@ -382,7 +385,7 @@ myApp.startComputer = function (string) {
     }
 }
 
-// Mathod that restarts the game but without the tying introduction.
+// Method that restarts the game but without the tying introduction.
 
 myApp.restart = function () {
     // Restore everything to the initial state.

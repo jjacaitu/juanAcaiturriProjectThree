@@ -553,7 +553,7 @@ main {
       -ms-flex-direction: column;
           flex-direction: column;
   color: gold;
-  padding: 20px;
+  padding: 20px 50px;
   border: chartreuse solid 5px;
   max-width: 1000px;
 }
@@ -718,7 +718,7 @@ main {
           align-items: center;
 }
 
-.guess {
+.guessRow {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -726,7 +726,7 @@ main {
 }
 
 @media (max-width: 600px) {
-  .guess {
+  .guessRow {
     -webkit-box-pack: start;
         -ms-flex-pack: start;
             justify-content: start;
@@ -734,12 +734,12 @@ main {
   }
 }
 
-.guess:first-of-type {
+.guessRow:first-of-type {
   text-decoration: underline;
   margin-bottom: 5px;
 }
 
-.guess:first-of-type::after {
+.guessRow:first-of-type::after {
   content: "";
   width: 10px;
   height: 10px;
@@ -753,7 +753,7 @@ main {
 }
 
 @media (max-width: 600px) {
-  .guess:first-of-type::after {
+  .guessRow:first-of-type::after {
     width: 5px;
     height: 5px;
     left: -5px;
@@ -761,18 +761,18 @@ main {
   }
 }
 
-.guess p {
+.guessRow p {
   width: calc(100%/3);
 }
 
 @media (max-width: 600px) {
-  .guess p {
+  .guessRow p {
     width: 45%;
   }
 }
 
 @media (max-width: 600px) {
-  .guess p:first-child {
+  .guessRow p:first-child {
     width: 10%;
   }
 }
@@ -838,7 +838,7 @@ main {
   color: white;
 }
 
-.inputBoard .clearAndEnter {
+.inputBoard .deleteAndEnter {
   width: 100%;
   text-align: center;
   padding-top: 30px;
