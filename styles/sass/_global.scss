@@ -1,4 +1,3 @@
-
 // General styles and stripping
 
 html {
@@ -73,6 +72,8 @@ h1 {
 h2 {
     color: $mainColor;
     font-size: 1.3rem;
+    display: none;
+    font-size: 1rem;
 }
 
 span {
@@ -104,11 +105,6 @@ header {
     align-items: center;
     min-height: 5vh;
     padding: 5px;
-
-    h2 {
-        display: none;
-        font-size: 1rem;
-    }
 }
 
 // Main styles
@@ -148,6 +144,7 @@ main {
 
     @include mq-phone {
         width: 95%;
+        padding: 20px;
     }
 
     li {

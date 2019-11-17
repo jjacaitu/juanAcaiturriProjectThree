@@ -489,6 +489,8 @@ h1 {
 h2 {
   color: chartreuse;
   font-size: 1.3rem;
+  display: none;
+  font-size: 1rem;
 }
 
 span {
@@ -523,11 +525,6 @@ header {
           align-items: center;
   min-height: 5vh;
   padding: 5px;
-}
-
-header h2 {
-  display: none;
-  font-size: 1rem;
 }
 
 main {
@@ -573,6 +570,7 @@ main {
 @media (max-width: 600px) {
   .introduction {
     width: 95%;
+    padding: 20px;
   }
 }
 

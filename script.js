@@ -35,7 +35,7 @@ myApp.startEventFunction =  function () {
     // Make introduction div desappear
     $(".introduction").fadeOut();
     // Make the h2 on the header appear
-    $("header h2").fadeIn();
+    $("header h2, header .fas").fadeIn();
     // call the method that makes the game introduction simulation the computer starting the nuke.
     myApp.startComputer("Beginning launching nuke sequence..............<br>Launching will take place in 20:00 minutes.....<br>Enter the correct code and press the red button in order to stop the launching...... <br>Starting 20:00 minute sequence in....<br>");
     // Call the method that generates the random code
@@ -88,9 +88,40 @@ myApp.updateInputsOnScreen = function () {
 
     $(`.guess${myApp.guessNumber}`).html(
         `<p class="guessNumber${myApp.guessNumber}">${myApp.guessNumber}</p>
-        <p class="userGuess userGuess${myApp.guessNumber}">${html}<span aria-hidden="true" class="blinking">|</span></p><div class="feedback feedback${myApp.guessNumber}"></div>`);
+        <p class="userGuess userGuess${myApp.guessNumber}">${html}<span aria-hidden="true" class="blinking">|</span></p>
+        <div class="feedback feedback${myApp.guessNumber}"></div>`
+    );
 
 }
+
+// Method that returns the amount of digits on the user guess that are on both the correct position and the correct number
+
+myApp.getCorrectGuessesAndPosition = function () {
+    let correctGuesses = 0;
+    for (let i = 0; i < this.userInput.length; i++) {
+        if (myApp.userInput[i] === myApp.masterCode[i]) {
+            correctGuesses++;
+        }
+    }
+    return correctGuesses;
+}
+
+// Method that returns the amount of digits on the user guess that exist on the random generated code but are not on the correct position
+
+myApp.getCorrectGuessesMisplaced = function () {
+    let guessesMisplaced = 0;
+    const masterCodeCopy = myApp.masterCode.slice();
+    for (let i = 0; i < this.userInput.length; i++) {
+        if (masterCodeCopy.includes(myApp.userInput[i])) {
+            guessesMisplaced++;
+            const indexToDelete = masterCodeCopy.indexOf(myApp.userInput[i]);
+            masterCodeCopy.splice(indexToDelete, 1);
+        }
+    }
+
+    return guessesMisplaced;
+}
+
 
 // Function for the click event that will be binded to the enter button
 
@@ -183,33 +214,6 @@ myApp.deleteClickEventFunction =  function () {
     
 };
 
-// Method that returns the amount of digits on the user guess that are on both the correct position and the correct number
-
-myApp.getCorrectGuessesAndPosition = function () {
-    let correctGuesses = 0;
-    for (let i = 0; i < this.userInput.length; i++){
-        if (myApp.userInput[i] === myApp.masterCode[i]) {
-            correctGuesses++;
-        }
-    }
-    return correctGuesses;
-}
-
-// Method that returns the amount of digits on the user guess that exist on the random generated code but are not on the correct position
-
-myApp.getCorrectGuessesMisplaced = function () {
-    let guessesMisplaced = 0;
-    const masterCodeCopy = myApp.masterCode.slice();
-    for (let i = 0; i < this.userInput.length; i++) {
-        if (masterCodeCopy.includes(myApp.userInput[i])) {
-            guessesMisplaced++;
-            const indexToDelete = masterCodeCopy.indexOf(myApp.userInput[i]);
-            masterCodeCopy.splice(indexToDelete, 1);
-        }
-    }
-
-    return guessesMisplaced;
-}
 
 // Method that creates the new line for the next turn.
 
@@ -242,9 +246,9 @@ myApp.generateFeedbackSquares = function (exact, misplaced) {
     }
 }
 
-// Method that creates the basic structure of the div that will contain the player guesses and feedback. 
+// Method that creates the basic structure of the div that will contain the player guesses and feedback, basically it creates the rows where the guesses and feedback will be displayed. 
 
-myApp.createGuessesDiv = function () {
+myApp.createGuessesRows = function () {
     const html = `<p>Attempts remaining: 10</p>
                     <div class="guessRow">
                         <p>#</p>
@@ -374,7 +378,7 @@ myApp.startComputer = function (string) {
                 $(".guessesAndFeedback").html(`${ariaLabel}${text} <span aria-hidden="true" class="blinking">|</span></p>`);
             } else {
                 $(".computerDisplay").remove();
-                myApp.createGuessesDiv();
+                myApp.createGuessesRows();
                 myApp.startTimer();
                 $(".rightPannel button").removeAttr("disabled");
                 $(".enter").attr("disabled", "true");
@@ -393,7 +397,7 @@ myApp.restart = function () {
     myApp.masterCode = [];
     myApp.randomCodeGenerator();
     myApp.startTimer();
-    myApp.createGuessesDiv();
+    myApp.createGuessesRows();
     $(".stopButtonDoor").removeClass("open");
     myApp.userInput = [];
     myApp.guessNumber = 1;
