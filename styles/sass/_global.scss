@@ -3,12 +3,10 @@
 
 html {
     font-size: 125%;
-    
 }
 
 body {
-    font-family: $mainFont;
-    
+    font-family: $mainFont;  
 }
 
 p, h1, li,ul, h2 {
@@ -119,7 +117,6 @@ main {
     min-height: 90vh;
     background-color: lemonchiffon;
     position: relative;
-
 }
 
 
@@ -185,13 +182,12 @@ main {
 .guessesAndFeedback {
     width: 60%;
     padding: 30px;
-    border: solid 40px $thirdColor;
     border-radius: 5px;
     margin: 40px 0;
     font-size: 1.2rem;
     font-family: $secondaryFont;
     background-color: $thirdColor;
-    box-shadow: -20px -20px $secondColor;
+    border: solid 40px $fourthColor;
     position: relative;
     color: $mainColor;
     outline: $mainColor 2px solid;
@@ -277,8 +273,6 @@ main {
 .input6{
     background-color: rgb(0, 158, 163);
 }
-
-// making equal width for the elements inside the screen
 
 .feedback,.userGuess {
     width: calc(100%/3);
@@ -385,7 +379,11 @@ main {
     flex-direction: column;
     justify-content: center;
     padding: 20px;
-    box-shadow: 20px 20px $secondColor;
+    border: $fourthColor solid 10px;
+
+    @include mq-phone {
+        border: none;
+    }
 
     .input {
         width: 100%;
@@ -441,7 +439,7 @@ main {
 
     .stopButtonDoor {
     
-        background-color: grey;
+        background-color: $fourthColor;
         position: absolute;
         top: 0;
         left: 0;

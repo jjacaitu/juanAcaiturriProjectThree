@@ -617,14 +617,12 @@ main {
 .guessesAndFeedback {
   width: 60%;
   padding: 30px;
-  border: solid 40px #1b1a1a;
   border-radius: 5px;
   margin: 40px 0;
   font-size: 1.2rem;
   font-family: "Inconsolata", monospace;
   background-color: #1b1a1a;
-  -webkit-box-shadow: -20px -20px gold;
-          box-shadow: -20px -20px gold;
+  border: solid 40px #4d4d4d;
   position: relative;
   color: chartreuse;
   outline: chartreuse 2px solid;
@@ -826,8 +824,13 @@ main {
       -ms-flex-pack: center;
           justify-content: center;
   padding: 20px;
-  -webkit-box-shadow: 20px 20px gold;
-          box-shadow: 20px 20px gold;
+  border: #4d4d4d solid 10px;
+}
+
+@media (max-width: 600px) {
+  .inputBoard {
+    border: none;
+  }
 }
 
 .inputBoard .input {
@@ -892,7 +895,7 @@ main {
 }
 
 .stopButtonContainer .stopButtonDoor {
-  background-color: grey;
+  background-color: #4d4d4d;
   position: absolute;
   top: 0;
   left: 0;
