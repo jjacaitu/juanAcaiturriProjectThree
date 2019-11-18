@@ -18,12 +18,16 @@
         <h2>Crack The Code</h2>
     </header>
     <main>
+
+        <!-- wraper starts here -->
         <div class="wrapper">
+
+
             <!-- Introduction Div starts here -->
             <div class="introduction">
                 <h1>Crack The Code<span aria-hidden="true" class="blinking">|</span></h1>
                 <ul>
-                    <li>A game inspired by mastermind.</li>
+                    <li>A game inspired by Mastermind.</li>
                     <li>You will have to guess a 4 digit code in less than 10 attempts or before times runs out in order to stop the launch of a nuke. Don't forget to press the stop button when you crack the code.</li>
                     <li>Everytime you enter the wrong code the timer will go down by 2 minutes.</li>
                     <li>Each time you enter a 4 digit code, your input will be validated and the computer will give you feedback.</li>
@@ -36,18 +40,28 @@
                 <button class="start">Start</button>
             </div>
             <!-- Introduction Div ends here -->
+
+
             <!-- Gameboard starts here -->
             <div class="gameBoard">
+
                 <!-- Guesses and feedback div that will be filled using javascript -->
+
                 <div class="guessesAndFeedback">
 
                 </div>
                 <!-- End of the guesses and feedback div -->
+
+
                 <!-- Right pannel that contains all the buttons the player can press while playing and the time left starts here -->
                 <div class="rightPannel">
+
                     <!-- Timer starts here -->
+
                     <p class="time" role="timer" aria-live="off">Timer: 00:20:00 </p>
+
                     <!-- Timer ends here -->
+
                     <!-- Board with the available input buttons starts here -->
                     <div class="inputBoard">
                         <ul class="userInputOptions">
@@ -70,25 +84,34 @@
                                 <button class="input input6" value="6">6</button>
                             </li>
                         </ul>
+
                         <!-- Div that contains the delete and enter buttons start here  -->
+
                         <div class="deleteAndEnter">
                             <button class="enter" disabled>Enter</button>
                             <button class="delete">Delete</button>
                         </div>
+
                         <!-- Delete and enter div ends here -->
                     </div>
                     <!-- InputBoard ends here  -->
+
                     <!-- Stop button div starts here -->
                     <div id="stopButton" class="stopButtonContainer">
                         <div class="stopButtonDoor"></div>
                         <button class="stopButton">STOP</button>
                     </div>
                     <!-- Stop button div ends here -->
+
                 </div>
                 <!-- Right pannel ends here -->
+
             </div>
             <!-- Gameboard div ends here -->
+
         </div>
+        <!-- wrapper ends here -->
+        
     </main>
     <footer>
         <p>Made by Juan Acaiturri-Villa</p>
@@ -108,8 +131,8 @@
                 </a>
             </li>
             <li>
-                <a href="www.linkedin.com/in/juan-acaiturri-villa">
-                    <i class="fab fa-linkedin-in" aria-label="Go to Juan Acaiturri's LinkedIn profile" aria-hidden="true"></i>
+                <a href="www.linkedin.com/in/juan-acaiturri-villa" aria-label="Go to Juan Acaiturri's LinkedIn profile">
+                    <i class="fab fa-linkedin-in" aria-hidden="true"></i>
                 </a>
             </li>
         </ul>
