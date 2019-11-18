@@ -358,7 +358,7 @@ myApp.loseAlert = function () {
 myApp.startComputer = function (string) {
 
     let text = "";
-    const ariaLabel = `<p class="computerDisplay" aria-label="Beginning launching nuke sequence. Launching will take place in 20: 00 minutes. Enter the correct code and press the red button in order to stop the launching. Starting 20:00 minute sequence shortly" aria-hidden="true"></p>`
+    const ariaLabel = `<p class="computerDisplay"aria-hidden="true"><span class="sr-only">Beginning launching nuke sequence. Launching will take place in 20: 00 minutes. Enter the correct code and press the red button in order to stop the launching. Starting 20:00 minute sequence shortly</span></p>`
 
     // split the message that is going to be showed to the user in order to show it one letter at a time.
     const array = string.split("");
