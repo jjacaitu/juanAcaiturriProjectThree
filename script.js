@@ -206,6 +206,7 @@ myApp.deleteClickEventFunction =  function () {
     // Remove disabled attribute to the input buttons to make sure that they are enabled in case the player decides to delete one of the digits of their code.
 
     $(".input").removeAttr("disabled");
+    $(".enter").attr("disabled", "true");
 
     // Remove the last number on the user Input list.
     myApp.userInput.pop();
